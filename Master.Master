@@ -1,0 +1,41 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Master.Master.cs" Inherits="Lab2.Home" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+    <%--Created by Wyatt T. Putnam--%>
+<body>
+    <form id="form1" runat="server">
+        <div>
+           <asp:Table ID="tblHome" runat="server">
+
+               <%--Table with links to each page.--%>
+                <asp:TableRow>
+                    <asp:TableCell>
+                        <asp:HyperLink ID="lnkHome" runat="server" NavigateUrl="~/Home.aspx">Home</asp:HyperLink>
+                    </asp:TableCell>
+                    <asp:TableCell>
+                        <asp:HyperLink ID="lnkCreateCustomer" runat="server" NavigateUrl="~/New Customer.aspx">Create Customer</asp:HyperLink>
+                    </asp:TableCell>
+                    <asp:TableCell>
+                        <asp:HyperLink ID="lnkNewWorkflow" runat="server" NavigateUrl="~/Work Flow.aspx">New Workflow</asp:HyperLink>
+                    </asp:TableCell>
+                    <asp:TableCell>
+                        <asp:HyperLink ID="lnkCurrentCustomers" runat="server" NavigateUrl="~/Current Customers.aspx">Current Customers</asp:HyperLink>
+                    </asp:TableCell>
+                    <asp:TableCell>
+                        <asp:Button ID="btnLogout" runat="server" Text="Log Out ->" OnClick ="fnLogout"/>
+                    </asp:TableCell>
+                </asp:TableRow>
+            </asp:Table>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
+</body>
+</html>

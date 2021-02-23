@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -49,8 +50,8 @@ namespace Lab2
                               "FULL OUTER JOIN Inventory ON Item.itemID = Inventory.itemID " +
                               "FULL OUTER JOIN Customer ON Inventory.customerID = Customer.CustomerID " +
                               "WHERE concat(Customer.LastName, ', ', Customer.FirstName) = '" + currentCustomer + "';";
-            SqlConnection sqlConnect = new SqlConnection("Server=Localhost;Database=Lab1;Trusted_Connection=Yes;");
 
+            SqlConnection sqlConnect = new SqlConnection(ConfigurationManager.ConnectionStrings["Lab2"].ConnectionString);
             SqlDataAdapter sqlAdapter = new SqlDataAdapter(sqlQuery, sqlConnect);
 
             DataTable dtForGridView = new DataTable();

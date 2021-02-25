@@ -8,7 +8,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Lab1Part3;
 
-//Created by Wyatt T. Putnam
+//Created by Wyatt T. Putnam, Cole Schweikert, and Shaima Sorchi
 
 namespace Lab2
 {

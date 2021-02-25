@@ -37,9 +37,9 @@ namespace Lab2
             //Adding a customer uses the Customer class
             Customer newCustomer = new Customer(txtFirstName.Text, txtLastName.Text, maxCustID, txtPhone.Text, address);
 
-            String sqlQuery = "INSERT INTO Customer(CustomerID, FirstName, LastName, Phone, \"Address\") VALUES ("
+            String sqlQuery = "INSERT INTO Customer(CustomerID, FirstName, LastName, Phone, \"Address\", Email, ContactMethod, MethodType, ServiceType) VALUES ("
                         + newCustomer.CustomerID + ", '" + newCustomer.FirstName + "', '" + newCustomer.LastName + "', '"
-                        + newCustomer.Phone + "', '" + newCustomer.Address + "')";
+                        + newCustomer.Phone + "', '" + newCustomer.Address + "', '" + txtEmail.Text + "', '" + HowDidDropDown.SelectedValue + "', '" + txtHear.Text + "', '" + ChooseServiceDropDown.SelectedValue + "')";
 
             String conString = ConfigurationManager.ConnectionStrings["Lab2"].ConnectionString;
 

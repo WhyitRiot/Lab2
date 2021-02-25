@@ -36,6 +36,7 @@ namespace Lab2
             String newWorkFlow = "INSERT INTO Service_Ticket (ServiceTicketID, TicketStatus, TicketOpenDate, CustomerID, ServiceID, empID) VALUES ";
             String newInventory = "INSERT INTO Inventory (inventoryID, CustomerID, \"date\") VALUES ";
             String newHistory = "INSERT INTO TicketHistory (TicketHistoryID, TicketChangeDate, ServiceTicketID, empID) VALUES ";
+            String newDetailsNote = "INSERT INTO DetailsNote (DetailsNoteID, ServiceTicketID, NoteTitle, NoteBody) VALUES ";
             String ticketQuery = "SELECT MAX(ServiceTicketID) from Service_Ticket";
 
             String sqlQuery = "SELECT MAX(ServiceID) as ServiceID FROM Service";
@@ -73,6 +74,22 @@ namespace Lab2
             reader = sqlCommand.ExecuteReader();
             reader.Read();
             String empID = reader["empID"].ToString();
+            reader.Close();
+
+            //Get the next DetailsNoteID
+            sqlQuery = "SELECT MAX(DetailsNoteID) as MaxDetailsNote FROM DetailsNote";
+            sqlCommand = new SqlCommand(sqlQuery, sqlConnect);
+            reader = sqlCommand.ExecuteReader();
+            int detailsNoteID;
+            reader.Read();
+            if (reader["MaxDetailsNote"] == null || reader["MaxDetailsNote"].ToString() == "")
+            {
+                detailsNoteID = 1;
+            }
+            else
+            {
+                detailsNoteID = (int)reader["MaxDetailsNote"] + 1;
+            }
             reader.Close();
 
             //Create a new TicketID by adding 1 to the last ticketID
@@ -187,6 +204,17 @@ namespace Lab2
             {
                 Console.WriteLine("Error inserting data into Database!");
             }
+
+            //Create a DetailsNote entry
+            newDetailsNote += "(" + detailsNoteID.ToString() + ", " + ticketID.ToString() + ", '" + txtNoteTitle.Text + "', '" + txtNoteBody.Text + "')";
+            sqlCommand = new SqlCommand(newDetailsNote, sqlConnect);
+            result = sqlCommand.ExecuteNonQuery();
+
+            if (result < 0)
+            {
+                Console.WriteLine("Error inserting data into Database!");
+            }
+
 
             sqlConnect.Close();
 

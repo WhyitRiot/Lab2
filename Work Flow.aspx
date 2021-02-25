@@ -29,13 +29,21 @@
                 DataSourceID="dataWKFLEmp" DataValueField="Employee">
             </asp:DropDownList>
             <br />
+            <asp:Label ID="lblNotes" runat="server" Text="Note: "></asp:Label>
+            <br />
+            <asp:Label ID="lblNoteTitle" runat="server" Text="Title: "></asp:Label>
+            <asp:TextBox ID="txtNoteTitle" runat="server"></asp:TextBox>
+            <br />
+            <asp:Label ID="lblNoteBody" runat="server" Text="Notes: "></asp:Label>
+            <asp:TextBox ID="txtNoteBody" runat="server" Height="100"></asp:TextBox>
+            <br />
         <%--Button takes all values in dropdownlists and text boxes and creates a Service ticket entry--%>
             <asp:Button ID="butnAddWorkFlow" runat="server" Text="Add Workflow" OnClick="btnAddWorkFlow"/>
 
             <br /> <br />
 
         <%--Select an existing service ticket and view details--%>
-            <asp:Label ID="lblWorkflow" runat="server" Text="Select a Service Ticket from the dropdown menu."></asp:Label>
+            <asp:Label ID="lblWorkflow" runat="server" Text="Select a Service Ticket from the dropdown menu." CausesValidation="false"></asp:Label>
 
             <asp:DropDownList ID="ddlServiceTickets" runat="server"
                 DataSourceID="dataWKFLServiceTickets"

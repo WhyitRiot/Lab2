@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-// Author: Wyatt T Putnam
+// Author: Wyatt T Putnam, Cole Schweikert, Shaima Sorchi
 
 namespace Lab1Part3
 {

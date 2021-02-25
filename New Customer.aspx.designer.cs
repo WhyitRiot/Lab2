@@ -15,15 +15,6 @@ namespace Lab2
     {
 
         /// <summary>
-        /// tblCustomer control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Table tblCustomer;
-
-        /// <summary>
         /// lblFirstname control.
         /// </summary>
         /// <remarks>
@@ -78,6 +69,69 @@ namespace Lab2
         protected global::System.Web.UI.WebControls.RequiredFieldValidator reqLastName;
 
         /// <summary>
+        /// lblHowDid control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblHowDid;
+
+        /// <summary>
+        /// HowDidDropDown control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList HowDidDropDown;
+
+        /// <summary>
+        /// lblHear control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblHear;
+
+        /// <summary>
+        /// txtHear control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtHear;
+
+        /// <summary>
+        /// reqtxtHear control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator reqtxtHear;
+
+        /// <summary>
+        /// lblChooseService control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblChooseService;
+
+        /// <summary>
+        /// ChooseServiceDropDown control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ChooseServiceDropDown;
+
+        /// <summary>
         /// lblPhone control.
         /// </summary>
         /// <remarks>
@@ -85,6 +139,15 @@ namespace Lab2
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblPhone;
+
+        /// <summary>
+        /// PhoneTypeDropDown control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList PhoneTypeDropDown;
 
         /// <summary>
         /// txtPhone control.
@@ -132,15 +195,6 @@ namespace Lab2
         protected global::System.Web.UI.WebControls.TextBox txtStreet;
 
         /// <summary>
-        /// reqtxtStreet control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator reqtxtStreet;
-
-        /// <summary>
         /// lblCity control.
         /// </summary>
         /// <remarks>
@@ -159,15 +213,6 @@ namespace Lab2
         protected global::System.Web.UI.WebControls.TextBox txtCity;
 
         /// <summary>
-        /// reqtxtCity control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator reqtxtCity;
-
-        /// <summary>
         /// lblState control.
         /// </summary>
         /// <remarks>
@@ -184,15 +229,6 @@ namespace Lab2
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtState;
-
-        /// <summary>
-        /// reqtxtState control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator reqtxtState;
 
         /// <summary>
         /// lblZip control.
@@ -220,6 +256,33 @@ namespace Lab2
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator reqtxtZip;
+
+        /// <summary>
+        /// lblEmail control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblEmail;
+
+        /// <summary>
+        /// txtEmail control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtEmail;
+
+        /// <summary>
+        /// reqtxtEmail control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator reqtxtEmail;
 
         /// <summary>
         /// btnAddCustomer control.

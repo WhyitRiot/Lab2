@@ -57,7 +57,7 @@ namespace Lab2
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Email ID;
+        protected global::System.Web.UI.WebControls.TextBox EmailID;
         
         /// <summary>
         /// Label2 control.

@@ -25,7 +25,7 @@ namespace Lab2
             message.Text = message.Text + "<br/>  You have successfuly created a profile with the following details.";
 
             ShowUserName.Text = Username.Text;
-            ShowEmail.Text = Email.Text;
+            ShowEmail.Text = EmailID.Text;
 
             ShowAddressLabel.Text = "Address";
             ShowPhoneLabel.Text = "Phone";
@@ -33,7 +33,7 @@ namespace Lab2
             ShowEmailIDLabel.Text = "Email ID";
 
             Username.Text = "";
-            Email.Text = "";
+            EmailID.Text = "";
 
 
 

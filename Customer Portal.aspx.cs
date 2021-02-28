@@ -15,7 +15,7 @@ namespace Lab2
         protected System.Web.UI.HtmlControls.HtmlInputFile File1;
         protected System.Web.UI.HtmlControls.HtmlInputFile Submit1;
 
-        
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -23,25 +23,31 @@ namespace Lab2
 
         protected void btn_Create(object sender, EventArgs e)
         {
-            message.Text = "Hello" + Username.Text + "!";
+            message.Text = "Hello" + txtUsername.Text + "!";
             message.Text = message.Text + "<br/>  You have successfuly created a profile with the following details.";
 
-            ShowUserName.Text = Username.Text;
-            ShowEmail.Text = Email.Text;
+            ShowUserName.Text = txtUsername.Text;
+            ShowEmail.Text = txtEmailID.Text;
 
-            ShowAddressLabel.Text = "Address";
+            //ShowAddressLabel.Text = "Address";
             ShowPhoneLabel.Text = "Phone";
             ShowUserNameLabel.Text = "Username";
             ShowEmailIDLabel.Text = "Email ID";
 
-            Username.Text = "";
-            Email.Text = "";
 
+            txtUsername.Text = "";
+            txtEmailID.Text = "";
+
+            int userID = getUserID();
+            String userAddress = txtAddress.Text;
+            String userPhone = txtPhone.Text;
+            String userName = txtUsername.Text;
+            String userEmail = txtEmailID.Text;
+            String userPass = PasswordHash.HashPassword(txtPassword.Text);
 
 
                 addUser(userID, userAddress, userPhone, userName, userEmail, userPass);
 
-            }
         }
 
         protected void addUser(int userID, String userAddress, String userPhone, String userName, String userEmail, String userPass)
@@ -84,7 +90,5 @@ namespace Lab2
             sqlConnect.Close();
             return userID;
         }
-
     }
-
 }

@@ -24,7 +24,16 @@ namespace Lab2
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// Label1 control.
+        /// Panel1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel Panel1;
+
+        /// <summary>
+        /// lblUsername control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -51,14 +60,14 @@ namespace Lab2
         protected global::System.Web.UI.WebControls.Label lblEmailID;
 
         /// <summary>
-        /// Email ID control.
+        /// txtEmailID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Email ID;
-        
+        protected global::System.Web.UI.WebControls.TextBox txtEmailID;
+
         /// <summary>
         /// lblPassword control.
         /// </summary>
@@ -105,13 +114,13 @@ namespace Lab2
         protected global::System.Web.UI.WebControls.Label lblAddress;
 
         /// <summary>
-        /// TextBox4 control.
+        /// txtAddress control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox4;
+        protected global::System.Web.UI.WebControls.TextBox txtAddress;
 
         /// <summary>
         /// lblPhone control.
@@ -123,13 +132,13 @@ namespace Lab2
         protected global::System.Web.UI.WebControls.Label lblPhone;
 
         /// <summary>
-        /// TextBox5 control.
+        /// txtPhone control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox5;
+        protected global::System.Web.UI.WebControls.TextBox txtPhone;
 
         /// <summary>
         /// btnCreate control.

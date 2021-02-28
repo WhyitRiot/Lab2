@@ -28,52 +28,52 @@
             <asp:Table CssClass="auto-style1" runat="server">
                 <asp:TableRow>
                     <asp:TableCell>
-                        <asp:Label ID="Label1" runat="server" Text="Username">
+                        <asp:Label ID="lblUsername" runat="server" Text="Username">
                         </asp:Label>
                     </asp:TableCell>
                     <asp:TableCell>
-                        <asp:TextBox ID="Username" runat="server" required="true"></asp:TextBox>
+                        <asp:TextBox ID="txtUsername" runat="server" required="true"></asp:TextBox>
                     </asp:TableCell>
                 </asp:TableRow>
                 <asp:TableRow>
                     <asp:TableCell>
-                        <asp:Label ID="Label6" runat="server" Text="Email ID">
+                        <asp:Label ID="lblEmailID" runat="server" Text="Email ID">
                         </asp:Label>
                     </asp:TableCell>
                     <asp:TableCell>
-                        <asp:TextBox ID="EmailID" runat="server" TextMode="Email"></asp:TextBox>                 
+                        <asp:TextBox ID="txtEmailID" runat="server" TextMode="Email"></asp:TextBox>                 
                     </asp:TableCell>
                 </asp:TableRow>
                 <asp:TableRow>
                     <asp:TableCell>
-                        <asp:Label ID="Label2" runat="server" Text="Password"></asp:Label>
+                        <asp:Label ID="lblPassword" runat="server" Text="Password"></asp:Label>
                     </asp:TableCell>
                     <asp:TableCell>
-                        <asp:TextBox ID="TextBox2" runat="server" TextMode="Password"></asp:TextBox>
-                    </asp:TableCell>
-                </asp:TableRow>
-                <asp:TableRow>
-                    <asp:TableCell>
-                        <asp:Label ID="Label3" runat="server" Text="Confirm Password"></asp:Label>
-                    </asp:TableCell>
-                    <asp:TableCell>
-                        <asp:TextBox ID="TextBox3" runat="server" TextMode="Password"></asp:TextBox>
+                        <asp:TextBox ID="txtPassword" runat="server" TextMode="Password"></asp:TextBox>
                     </asp:TableCell>
                 </asp:TableRow>
                 <asp:TableRow>
                     <asp:TableCell>
-                        <asp:Label ID="Label4" runat="server" Text="Address"></asp:Label>
+                        <asp:Label ID="lblConfirmPass" runat="server" Text="Confirm Password"></asp:Label>
                     </asp:TableCell>
                     <asp:TableCell>
-                        <asp:TextBox ID="TextBox4" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtConfirmPassword" runat="server" TextMode="Password"></asp:TextBox>
                     </asp:TableCell>
                 </asp:TableRow>
                 <asp:TableRow>
                     <asp:TableCell>
-                        <asp:Label ID="Label5" runat="server" Text="Phone Number"></asp:Label>
+                        <asp:Label ID="lblAddress" runat="server" Text="Address"></asp:Label>
                     </asp:TableCell>
                     <asp:TableCell>
-                        <asp:TextBox ID="TextBox5" runat="server" TextMode="Phone"></asp:TextBox>
+                        <asp:TextBox ID="txtAddress" runat="server"></asp:TextBox>
+                    </asp:TableCell>
+                </asp:TableRow>
+                <asp:TableRow>
+                    <asp:TableCell>
+                        <asp:Label ID="lblPhone" runat="server" Text="Phone Number"></asp:Label>
+                    </asp:TableCell>
+                    <asp:TableCell>
+                        <asp:TextBox ID="txtPhone" runat="server" TextMode="Phone"></asp:TextBox>
                     </asp:TableCell>
                 </asp:TableRow>
              <asp:TableRow>
@@ -82,7 +82,7 @@
                  </asp:TableCell>
                  <asp:TableCell>
                      <br />
-                     <asp:Button ID="Button1" runat="server" Text="Create" OnClick="Button1_Click"/>
+                     <asp:Button ID="btnCreate" runat="server" Text="Create" OnClick="btn_Create"/>
                  </asp:TableCell>
              </asp:TableRow>
             </asp:Table>

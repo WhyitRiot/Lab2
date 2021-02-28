@@ -87,6 +87,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Auction.cs" />
+    <Compile Include="PasswordHash.cs" />
     <Compile Include="Customer Portal.aspx.cs">
       <DependentUpon>Customer Portal.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

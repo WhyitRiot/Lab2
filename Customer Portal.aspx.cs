@@ -4,7 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-
+using System.Security.Cryptography;
+using System.Configuration;
+using System.Data.SqlClient;
 
 namespace Lab2
 {
@@ -19,29 +21,80 @@ namespace Lab2
 
         }
 
-        protected void Button1_Click(object sender, EventArgs e)
+        protected void btn_Create(object sender, EventArgs e)
         {
-            message.Text = "Hello" + Username.Text + "!";
-            message.Text = message.Text + "<br/>  You have successfuly created a profile with the following details.";
+            if (!(txtPassword.Text.Equals(txtConfirmPassword.Text))){
+                message.Text = "Passwords do not match!";
+            }
+            else {
+                message.Text = "Hello" + txtUsername.Text + "!";
+                message.Text = message.Text + "<br/>  You have successfuly created a profile with the following details.";
 
-            ShowUserName.Text = Username.Text;
-            ShowEmail.Text = EmailID.Text;
+                ShowUserName.Text = txtUsername.Text;
+                ShowEmail.Text = txtEmailID.Text;
 
-            ShowAddressLabel.Text = "Address";
-            ShowPhoneLabel.Text = "Phone";
-            ShowUserNameLabel.Text = "Username";
-            ShowEmailIDLabel.Text = "Email ID";
+                ShowAddressLabel.Text = "Address";
+                ShowPhoneLabel.Text = "Phone";
+                ShowUserNameLabel.Text = "Username";
+                ShowEmailIDLabel.Text = "Email ID";
 
-            Username.Text = "";
-            EmailID.Text = "";
-
-
+                txtUsername.Text = "";
+                txtEmailID.Text = "";
 
 
+                int userID = getUserID();
+                String userAddress = txtAddress.Text;
+                String userPhone = txtPhone.Text;
+                String userName = txtUsername.Text;
+                String userEmail = txtEmailID.Text;
+                String userPass = PasswordHash.HashPassword(txtPassword.Text);
 
+                addUser(userID, userAddress, userPhone, userName, userEmail, userPass);
+
+            }
         }
 
+        protected void addUser(int userID, String userAddress, String userPhone, String userName, String userEmail, String userPass)
+        {
+            String sqlQuery = "INSERT INTO Users (UserID, UserAddress, UserPhone, UserName, UserEmail, UserPass) VALUES (@UserID, @UserAddress, @UserPhone, @UserName, @UserEmail, @UserPass)";
+            String connectionString = ConfigurationManager.ConnectionStrings["AUTH"].ConnectionString;
+            SqlConnection sqlConnect = new SqlConnection(connectionString);
+            SqlCommand sqlCommand = new SqlCommand(sqlQuery, sqlConnect);
+            sqlCommand.Parameters.AddWithValue("@UserID", userID);
+            sqlCommand.Parameters.AddWithValue("@UserAddress", userAddress);
+            sqlCommand.Parameters.AddWithValue("@UserPhone", userPhone);
+            sqlCommand.Parameters.AddWithValue("@UserEmail", userEmail);
+            sqlCommand.Parameters.AddWithValue("@UserName", userName);
+            sqlCommand.Parameters.AddWithValue("@UserPass", userPass);
 
+            sqlConnect.Open();
+            sqlCommand.ExecuteNonQuery();
+            sqlConnect.Close();
+        }
+
+        protected int getUserID()
+        {
+            String sqlQuery = "SELECT MAX(UserID) as MaxUserID FROM Users";
+            String connectionString = ConfigurationManager.ConnectionStrings["AUTH"].ConnectionString;
+            SqlConnection sqlConnect = new SqlConnection(connectionString);
+            sqlConnect.Open();
+            SqlCommand sqlCommand = new SqlCommand(sqlQuery, sqlConnect);
+            SqlDataReader reader = sqlCommand.ExecuteReader();
+            reader.Read();
+            int userID;
+            if (reader["MaxUserID"] == null || reader["MaxUserID"] == "")
+            {
+                userID = 1;
+            }
+            else
+            {
+                userID = (int)reader["MaxUserID"] + 1;
+            }
+            reader.Close();
+            sqlConnect.Close();
+            return userID;
+        }
 
     }
+
 }

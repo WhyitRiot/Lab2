@@ -52,11 +52,13 @@
                              <asp:Label ID="lblChooseService" runat="server" Text="What service are you interested in today?"></asp:Label>
                          </asp:TableCell>
                          <asp:TableCell>
-                             <asp:DropDownList ID="ChooseServiceDropDown" runat="server">
+<%--                             <asp:DropDownList ID="ChooseServiceDropDown" runat="server">
                                  <asp:ListItem Text="<-- Select -->"></asp:ListItem>
                                  <asp:ListItem Text="Moving"></asp:ListItem>
-                                 <asp:ListItem Text="Auction"></asp:ListItem>
-                             </asp:DropDownList>
+                                 <asp:ListItem Text="Auction"></asp:ListItem>--%>
+<%--                             </asp:DropDownList>--%>
+                             <asp:CheckBox ID="chbxMove" runat="server" Text="Move"/>
+                             <asp:CheckBox ID="chbxAuction" runat="server" Text="Auction"/>
                          </asp:TableCell>
                      </asp:TableRow>
                      <asp:TableRow>
@@ -121,7 +123,7 @@
                         <%--Button to add customer to the database.--%>
                         <asp:Button ID="btnAddCustomer" runat="server" Text="Create Customer" OnClick="CreateCustomer" />
                         <%--Button to clear data from text boxes.--%>
-                        <asp:Button ID="btnClear" runat="server" Text="Clear" OnClick="ClearTxt" />
+                        <asp:Button ID="btnClear" runat="server" Text="Clear" OnClick="ClearTxt" CausesValidation ="false"/>
           
                         <%--Button to populate textboxes with test data.--%>
                         <asp:Button ID="btnGenerateData" runat="server" Text="Populate" OnClick="GenerateData" causesvalidation="false" />

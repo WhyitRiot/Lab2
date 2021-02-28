@@ -30,190 +30,202 @@ namespace Lab2
         protected void btnAddWorkFlow(object sender, EventArgs e)
         {
             //Insert statements declared as String values.
-            String newAuction = "INSERT INTO Auction (ServiceID, empID) VALUES ";
-            String newMove = "INSERT INTO \"Move\" (ServiceID, empID, originAddress, destAddress) VALUES ";
-            String newService = "INSERT INTO \"Service\" (CustomerID, ServiceID, InventoryID, \"Date\") VALUES ";
-            String newWorkFlow = "INSERT INTO Service_Ticket (ServiceTicketID, TicketStatus, TicketOpenDate, CustomerID, ServiceID, empID) VALUES ";
-            String newInventory = "INSERT INTO Inventory (inventoryID, CustomerID, \"date\") VALUES ";
-            String newHistory = "INSERT INTO TicketHistory (TicketHistoryID, TicketChangeDate, ServiceTicketID, empID) VALUES ";
-            String newDetailsNote = "INSERT INTO DetailsNote (DetailsNoteID, ServiceTicketID, NoteTitle, NoteBody) VALUES ";
-            String ticketQuery = "SELECT MAX(ServiceTicketID) from Service_Ticket";
+            //String newAuction = "INSERT INTO Auction (ServiceID, empID) VALUES ";
+            //String newMove = "INSERT INTO \"Move\" (ServiceID, empID, originAddress, destAddress) VALUES ";
+            //String newService = "INSERT INTO \"Service\" (CustomerID, ServiceID, InventoryID, \"Date\") VALUES ";
+            //String newWorkFlow = "INSERT INTO Service_Ticket (ServiceTicketID, TicketStatus, TicketOpenDate, CustomerID, ServiceID, empID) VALUES ";
+            //String newInventory = "INSERT INTO Inventory (inventoryID, CustomerID, \"date\") VALUES ";
+            //String newHistory = "INSERT INTO TicketHistory (TicketHistoryID, TicketChangeDate, ServiceTicketID, empID) VALUES ";
+            //String newDetailsNote = "INSERT INTO DetailsNote (DetailsNoteID, ServiceTicketID, NoteTitle, NoteBody) VALUES ";
+            //String ticketQuery = "SELECT MAX(ServiceTicketID) from Service_Ticket";
 
-            String sqlQuery = "SELECT MAX(ServiceID) as ServiceID FROM Service";
+            //String sqlQuery = "SELECT MAX(ServiceID) as ServiceID FROM Service";
             String connectionString = ConfigurationManager.ConnectionStrings["Lab2"].ConnectionString;
 
             //Establish SQL connection and reader object to retrieve information from the DB.
             SqlConnection sqlConnect = new SqlConnection(connectionString);
-            SqlCommand sqlCommand = new SqlCommand(sqlQuery, sqlConnect);
             sqlConnect.Open();
-            SqlDataReader reader = sqlCommand.ExecuteReader();
-            reader.Read();
-            int serviceID = (int)reader["ServiceID"] + 1;
-            reader.Close();
+            SqlDataReader reader;
+            //reader.Read();
+            //int serviceID = (int)reader["ServiceID"] + 1;
+            //reader.Close();
 
             //Get the last inventoryID and set the new inventoryID as 1 + the last
-            sqlQuery = "SELECT MAX(inventoryID) as InventoryID FROM Inventory";
-            sqlCommand = new SqlCommand(sqlQuery, sqlConnect);
-            reader = sqlCommand.ExecuteReader();
-            reader.Read();
-            int inventoryID = (int)reader["InventoryID"] + 1;
-            reader.Close();
+            //sqlQuery = "SELECT MAX(inventoryID) as InventoryID FROM Inventory";
+            //sqlCommand = new SqlCommand(sqlQuery, sqlConnect);
+            //reader = sqlCommand.ExecuteReader();
+            //reader.Read();
+            //int inventoryID = (int)reader["InventoryID"] + 1;
+            //reader.Close();
 
             //Get the CustomerID using the selected Customer
-            sqlQuery = "SELECT CustomerID, concat(lastname, ', ', firstname) as CustomerID from Customer WHERE concat(lastname, ', ', firstname) = " + "'" + ddlWorkflowCustomer.SelectedValue.Substring(3) + "'";
-            sqlCommand = new SqlCommand(sqlQuery, sqlConnect);
+            String sqlQuery = "SELECT CustomerID, concat(lastname, ', ', firstname) as CustomerID from Customer WHERE concat(lastname, ', ', firstname) = " + "'" + ddlWorkflowCustomer.SelectedValue.Substring(3) + "'";
+            SqlCommand sqlCommand = new SqlCommand(sqlQuery, sqlConnect);
             reader = sqlCommand.ExecuteReader();
             reader.Read();
-            String custID = reader["CustomerID"].ToString();
+            int custID = (int)reader["CustomerID"];
             reader.Close();
 
             //Get the employeeID using the selected Employee
-            String employee = ddlWorkflowEmp.SelectedValue.Substring(3);
-            String empQuery = "SELECT empID, concat(lastname, ', ', firstname) as Employee from Employee WHERE concat(lastname, ', ', firstname) = " + "'" + employee + "'";
-            sqlCommand = new SqlCommand(empQuery, sqlConnect);
-            reader = sqlCommand.ExecuteReader();
-            reader.Read();
-            String empID = reader["empID"].ToString();
-            reader.Close();
+            //String employee = ddlWorkflowEmp.SelectedValue.Substring(3);
+            //String empQuery = "SELECT empID, concat(lastname, ', ', firstname) as Employee from Employee WHERE concat(lastname, ', ', firstname) = " + "'" + employee + "'";
+            //sqlCommand = new SqlCommand(empQuery, sqlConnect);
+            //reader = sqlCommand.ExecuteReader();
+            //reader.Read();
+            //String empID = reader["empID"].ToString();
+            //reader.Close();
 
             //Get the next DetailsNoteID
-            sqlQuery = "SELECT MAX(DetailsNoteID) as MaxDetailsNote FROM DetailsNote";
-            sqlCommand = new SqlCommand(sqlQuery, sqlConnect);
-            reader = sqlCommand.ExecuteReader();
-            int detailsNoteID;
-            reader.Read();
-            if (reader["MaxDetailsNote"] == null || reader["MaxDetailsNote"].ToString() == "")
-            {
-                detailsNoteID = 1;
-            }
-            else
-            {
-                detailsNoteID = (int)reader["MaxDetailsNote"] + 1;
-            }
-            reader.Close();
+            //sqlQuery = "SELECT MAX(DetailsNoteID) as MaxDetailsNote FROM DetailsNote";
+            //sqlCommand = new SqlCommand(sqlQuery, sqlConnect);
+            //reader = sqlCommand.ExecuteReader();
+            //int detailsNoteID;
+            //reader.Read();
+            //if (reader["MaxDetailsNote"] == null || reader["MaxDetailsNote"].ToString() == "")
+            //{
+            //    detailsNoteID = 1;
+            //}
+            //else
+            //{
+            //    detailsNoteID = (int)reader["MaxDetailsNote"] + 1;
+            //}
+            //reader.Close();
 
             //Create a new TicketID by adding 1 to the last ticketID
             //If there are no ticketIDs the TicketID = 1
-            ticketQuery = "SELECT MAX(ServiceTicketID) as TicketID from Service_Ticket";
-            sqlCommand = new SqlCommand(ticketQuery, sqlConnect);
-            reader = sqlCommand.ExecuteReader();
-            reader.Read();
-            int ticketID;
-            if (reader["TicketID"].ToString() == "" || reader["TicketID"].ToString() == null)
-            {
-                ticketID = 1;
-            }
-            else
-            {
-                ticketID = (int)reader["TicketID"] + 1;
-            }
-            reader.Close();
+            //ticketQuery = "SELECT MAX(ServiceTicketID) as TicketID from Service_Ticket";
+            //sqlCommand = new SqlCommand(ticketQuery, sqlConnect);
+            //reader = sqlCommand.ExecuteReader();
+            //reader.Read();
+            //int ticketID;
+            //if (reader["TicketID"].ToString() == "" || reader["TicketID"].ToString() == null)
+            //{
+            //    ticketID = 1;
+            //}
+            //else
+            //{
+            //    ticketID = (int)reader["TicketID"] + 1;
+            //}
+            //reader.Close();
 
             //Create a tickethistoryID using the same method as TicketID above
-            String ticketHistoryQuery = "SELECT MAX(ServiceTicketID) as TicketHistory from TicketHistory";
-            sqlCommand = new SqlCommand(ticketHistoryQuery, sqlConnect);
-            reader = sqlCommand.ExecuteReader();
-            reader.Read();
-            int ticketHistoryID;
-            if (reader["TicketHistory"].ToString() == "" || reader["TicketHistory"].ToString() == null)
-            {
-                ticketHistoryID = 1;
-            }
-            else
-            {
-                ticketHistoryID = (int)reader["TicketHistory"] + 1;
-            }
-            reader.Close();
+            //String ticketHistoryQuery = "SELECT MAX(ServiceTicketID) as TicketHistory from TicketHistory";
+            //sqlCommand = new SqlCommand(ticketHistoryQuery, sqlConnect);
+            //reader = sqlCommand.ExecuteReader();
+            //reader.Read();
+            //int ticketHistoryID;
+            //if (reader["TicketHistory"].ToString() == "" || reader["TicketHistory"].ToString() == null)
+            //{
+            //    ticketHistoryID = 1;
+            //}
+            //else
+            //{
+            //    ticketHistoryID = (int)reader["TicketHistory"] + 1;
+            //}
+            //reader.Close();
 
-          
+
             //Create a new inventory entry
-            newInventory += "(" + inventoryID.ToString() + ", " + custID.ToString() + ", " + "'" + DateTime.Now.ToString() + "'" + ")";
-            sqlCommand = new SqlCommand(newInventory, sqlConnect);
+            int inventoryID = getInventoryID();
+            addNewInventory(inventoryID, custID, DateTime.Now.ToString());
+            //newInventory += "(" + inventoryID.ToString() + ", " + custID.ToString() + ", " + "'" + DateTime.Now.ToString() + "'" + ")";
+            //sqlCommand = new SqlCommand(newInventory, sqlConnect);
 
 
-            int result = sqlCommand.ExecuteNonQuery();
+            //int result = sqlCommand.ExecuteNonQuery();
 
-            if (result < 0)
-            {
-                Console.WriteLine("Error inserting data into Database!");
-            }
-            
+            //if (result < 0)
+            //{
+            //    Console.WriteLine("Error inserting data into Database!");
+            //}
+
+
             //Create a new Service event
-            newService += "(" + custID.ToString() + ", " + serviceID.ToString() + ", " + inventoryID.ToString() + ", " + "'" + DateTime.Now.ToString() + "'" + ")";
-            sqlCommand = new SqlCommand(newService, sqlConnect);
+            int serviceID = getServiceID();
+            addNewService(custID, serviceID, inventoryID, DateTime.Now.ToString());
+            //newService += "(" + custID.ToString() + ", " + serviceID.ToString() + ", " + inventoryID.ToString() + ", " + "'" + DateTime.Now.ToString() + "'" + ")";
+            //sqlCommand = new SqlCommand(newService, sqlConnect);
 
-            result = sqlCommand.ExecuteNonQuery();
+            //result = sqlCommand.ExecuteNonQuery();
 
-            if (result < 0)
-            {
-                Console.WriteLine("Error inserting data into Database!");
-            }
+            //if (result < 0)
+            //{
+            //    Console.WriteLine("Error inserting data into Database!");
+            //}
 
+            int empID = getEmployeeID();
             //Create a Move event if option is checked
             if (chbxWorkflowMove.Checked)
             {
                 
                 String originAddress = txtboxOriginAddress.Text;
                 String destAddress = txtboxDestinationAddress.Text;
+                addNewMove(serviceID, empID, originAddress, destAddress);
+                //newMove += "(" + serviceID.ToString() + ", " + empID.ToString() + ", " + "'" + originAddress + "'" + ", " + "'" + destAddress + "'" + ")";
 
-                newMove += "(" + serviceID.ToString() + ", " + empID.ToString() + ", " + "'" + originAddress + "'" + ", " + "'" + destAddress + "'" + ")";
+                //sqlCommand = new SqlCommand(newMove, sqlConnect);
 
-                sqlCommand = new SqlCommand(newMove, sqlConnect);
+                //result = sqlCommand.ExecuteNonQuery();
 
-                result = sqlCommand.ExecuteNonQuery();
-
-                if (result < 0)
-                {
-                    Console.WriteLine("Error inserting data into Database!");
-                }
+                //if (result < 0)
+                //{
+                //    Console.WriteLine("Error inserting data into Database!");
+                //}
 
             }
 
             //Create an Auction event if option is checked
             if (chbxWorkflowAuction.Checked)
             {
+                addNewAuction(serviceID, empID);
+                //newAuction += "(" + serviceID.ToString() + ", " + empID.ToString() + ")";
 
-                newAuction += "(" + serviceID.ToString() + ", " + empID.ToString() + ")";
+                //sqlCommand = new SqlCommand(newAuction, sqlConnect);
 
-                sqlCommand = new SqlCommand(newAuction, sqlConnect);
+                //result = sqlCommand.ExecuteNonQuery();
 
-                result = sqlCommand.ExecuteNonQuery();
-
-                if (result < 0)
-                {
-                    Console.WriteLine("Error inserting data into Database!");
-                }
+                //if (result < 0)
+                //{
+                //    Console.WriteLine("Error inserting data into Database!");
+                //}
             }
 
+            int ticketID = getServiceTicketID();
+            int ticketHistoryID = getTicketHistoryID();
             //Create an Service_ticket entry
-            newWorkFlow += "(" + ticketID.ToString() + ", " + "'Open'" + ", " + "'" + DateTime.Now.ToString() + "'" + ", " + custID.ToString() + ", " + serviceID.ToString() + ", " + empID.ToString() + ")";
-            sqlCommand = new SqlCommand(newWorkFlow, sqlConnect);
-            result = sqlCommand.ExecuteNonQuery();
+            addNewWorkflow(ticketID, "Open", DateTime.Now.ToString(), custID, serviceID, empID);
+            //newWorkFlow += "(" + ticketID.ToString() + ", " + "'Open'" + ", " + "'" + DateTime.Now.ToString() + "'" + ", " + custID.ToString() + ", " + serviceID.ToString() + ", " + empID.ToString() + ")";
+            //sqlCommand = new SqlCommand(newWorkFlow, sqlConnect);
+            //result = sqlCommand.ExecuteNonQuery();
 
-            if (result < 0)
-            {
-                Console.WriteLine("Error inserting data into Database!");
-            }
+            //if (result < 0)
+            //{
+            //    Console.WriteLine("Error inserting data into Database!");
+            //}
+
 
             //Create a tickethistory event
-            newHistory += "(" + ticketHistoryID.ToString() + ", " + "'" + DateTime.Now.ToString() + "'" + ", " + ticketID + ", " + empID + ")";
-            sqlCommand = new SqlCommand(newHistory, sqlConnect);
-            result = sqlCommand.ExecuteNonQuery();
+            
+            addNewHistory(ticketHistoryID, DateTime.Now.ToString(), ticketID, empID);
+            //newHistory += "(" + ticketHistoryID.ToString() + ", " + "'" + DateTime.Now.ToString() + "'" + ", " + ticketID + ", " + empID + ")";
+            //sqlCommand = new SqlCommand(newHistory, sqlConnect);
+            //result = sqlCommand.ExecuteNonQuery();
 
-            if (result < 0)
-            {
-                Console.WriteLine("Error inserting data into Database!");
-            }
+            //if (result < 0)
+            //{
+            //    Console.WriteLine("Error inserting data into Database!");
+            //}
+
 
             //Create a DetailsNote entry
-            newDetailsNote += "(" + detailsNoteID.ToString() + ", " + ticketID.ToString() + ", '" + txtNoteTitle.Text + "', '" + txtNoteBody.Text + "')";
-            sqlCommand = new SqlCommand(newDetailsNote, sqlConnect);
-            result = sqlCommand.ExecuteNonQuery();
+            //newDetailsNote += "(" + detailsNoteID.ToString() + ", " + ticketID.ToString() + ", '" + txtNoteTitle.Text + "', '" + txtNoteBody.Text + "')";
+            //sqlCommand = new SqlCommand(newDetailsNote, sqlConnect);
+            //result = sqlCommand.ExecuteNonQuery();
 
-            if (result < 0)
-            {
-                Console.WriteLine("Error inserting data into Database!");
-            }
+            //if (result < 0)
+            //{
+            //    Console.WriteLine("Error inserting data into Database!");
+            //}
 
 
             sqlConnect.Close();
@@ -385,6 +397,273 @@ namespace Lab2
             ddlCustomer.ClearSelection();
             ddlEmployee.ClearSelection();
             Response.Redirect("Work Flow.aspx");
+        }
+
+        //String newAuction = "INSERT INTO Auction (ServiceID, empID) VALUES ";
+        //String newMove = "INSERT INTO \"Move\" (ServiceID, empID, originAddress, destAddress) VALUES ";
+        //String newService = "INSERT INTO \"Service\" (CustomerID, ServiceID, InventoryID, \"Date\") VALUES ";
+        //String newWorkFlow = "INSERT INTO Service_Ticket (ServiceTicketID, TicketStatus, TicketOpenDate, CustomerID, ServiceID, empID) VALUES ";
+        //String newInventory = "INSERT INTO Inventory (inventoryID, CustomerID, \"date\") VALUES ";
+        //String newHistory = "INSERT INTO TicketHistory (TicketHistoryID, TicketChangeDate, ServiceTicketID, empID) VALUES ";
+        //String newDetailsNote = "INSERT INTO DetailsNote (DetailsNoteID, ServiceTicketID, NoteTitle, NoteBody) VALUES ";
+
+
+        protected void addNewAuction(int serviceID, int empID)
+        {
+            String newAuction = "INSERT INTO Auction (ServiceID, empID) VALUES (@ServiceID, @empID)";
+
+            String connectionString = ConfigurationManager.ConnectionStrings["Lab2"].ConnectionString;
+
+            SqlConnection sqlConnect = new SqlConnection(connectionString);
+            SqlCommand sqlCommand = new SqlCommand(newAuction, sqlConnect);
+
+            sqlCommand.Parameters.AddWithValue("@ServiceID", serviceID);
+            sqlCommand.Parameters.AddWithValue("@empID", empID);
+
+            sqlConnect.Open();
+            sqlCommand.ExecuteNonQuery();
+            sqlConnect.Close();
+        }
+
+        protected void addNewMove(int serviceID, int empID, String originAddress, String destAddress)
+        {
+            String newMove = "INSERT INTO \"Move\" (ServiceID, empID, originAddress, destAddress) VALUES (@ServiceID, @empID, @originAddress, @destAddress)";
+            String connectionString = ConfigurationManager.ConnectionStrings["Lab2"].ConnectionString;
+
+            SqlConnection sqlConnect = new SqlConnection(connectionString);
+            SqlCommand sqlCommand = new SqlCommand(newMove, sqlConnect);
+
+            sqlCommand.Parameters.AddWithValue("@ServiceID", serviceID);
+            sqlCommand.Parameters.AddWithValue("@empID", empID);
+            sqlCommand.Parameters.AddWithValue("@originAddress", originAddress);
+            sqlCommand.Parameters.AddWithValue("@destAddress", destAddress);
+
+            sqlConnect.Open();
+            sqlCommand.ExecuteNonQuery();
+            sqlConnect.Close();
+        }
+        //String newService = "INSERT INTO \"Service\" (CustomerID, ServiceID, InventoryID, \"Date\") VALUES ";
+        protected void addNewService(int customerID, int serviceID, int inventoryID, String date)
+        {
+            String newService = "INSERT INTO \"Service\" (CustomerID, ServiceID, InventoryID, \"Date\") VALUES (@CustomerID, @ServiceID, @InventoryID, @Date)";
+            String connectionString = ConfigurationManager.ConnectionStrings["Lab2"].ConnectionString;
+
+            SqlConnection sqlConnect = new SqlConnection(connectionString);
+            SqlCommand sqlCommand = new SqlCommand(newService, sqlConnect);
+
+            sqlCommand.Parameters.AddWithValue("@CustomerID", customerID);
+            sqlCommand.Parameters.AddWithValue("@ServiceID", serviceID);
+            sqlCommand.Parameters.AddWithValue("@InventoryID", inventoryID);
+            sqlCommand.Parameters.AddWithValue("@Date", date);
+
+            sqlConnect.Open();
+            sqlCommand.ExecuteNonQuery();
+            sqlConnect.Close();
+        }
+
+        //String newWorkFlow = "INSERT INTO Service_Ticket (ServiceTicketID, TicketStatus, TicketOpenDate, CustomerID, ServiceID, empID) VALUES ";
+        protected void addNewWorkflow(int serviceTicketID, String ticketStatus, String ticketOpenDate, int customerID, int serviceID, int empID)
+        {
+            String newWorkFlow = "INSERT INTO Service_Ticket (ServiceTicketID, TicketStatus, TicketOpenDate, CustomerID, ServiceID, empID) VALUES " +
+                                 "(@ServiceTicketID, @TicketStatus, @TicketOpenDate, @CustomerID, @ServiceID, @empID)";
+            String connectionString = ConfigurationManager.ConnectionStrings["Lab2"].ConnectionString;
+
+            SqlConnection sqlConnect = new SqlConnection(connectionString);
+            SqlCommand sqlCommand = new SqlCommand(newWorkFlow, sqlConnect);
+
+            sqlCommand.Parameters.AddWithValue("@ServiceTicketID", serviceTicketID);
+            sqlCommand.Parameters.AddWithValue("@TicketStatus", ticketStatus);
+            sqlCommand.Parameters.AddWithValue("@TicketOpenDate", ticketOpenDate);
+            sqlCommand.Parameters.AddWithValue("@CustomerID", customerID);
+            sqlCommand.Parameters.AddWithValue("@ServiceID", serviceID);
+            sqlCommand.Parameters.AddWithValue("@empID", empID);
+
+            sqlConnect.Open();
+            sqlCommand.ExecuteNonQuery();
+            sqlConnect.Close();
+        }
+
+
+        //String newInventory = "INSERT INTO Inventory (inventoryID, CustomerID, \"date\") VALUES ";
+        protected void addNewInventory(int inventoryID, int customerID, String date)
+        {
+            String newInventory = "INSERT INTO Inventory (inventoryID, CustomerID, \"date\") VALUES (@InventoryID, @CustomerID, @Date)";
+            String connectionString = ConfigurationManager.ConnectionStrings["Lab2"].ConnectionString;
+
+            SqlConnection sqlConnect = new SqlConnection(connectionString);
+            SqlCommand sqlCommand = new SqlCommand(newInventory, sqlConnect);
+
+            sqlCommand.Parameters.AddWithValue("@InventoryID", inventoryID);
+            sqlCommand.Parameters.AddWithValue("@CustomerID", customerID);
+            sqlCommand.Parameters.AddWithValue("@Date", date);
+
+            sqlConnect.Open();
+            sqlCommand.ExecuteNonQuery();
+            sqlConnect.Close();
+        }
+
+        //String newHistory = "INSERT INTO TicketHistory (TicketHistoryID, TicketChangeDate, ServiceTicketID, empID) VALUES ";
+        protected void addNewHistory(int ticketHistoryID, String ticketChangeDate, int serviceTicketID, int empID)
+        {
+            String newHistory = "INSERT INTO TicketHistory (TicketHistoryID, TicketChangeDate, ServiceTicketID, empID) VALUES (@TicketHistoryID, @TicketChangeDate, @ServiceTicketID, @empID)";
+            String connectionString = ConfigurationManager.ConnectionStrings["Lab2"].ConnectionString;
+
+            SqlConnection sqlConnect = new SqlConnection(connectionString);
+            SqlCommand sqlCommand = new SqlCommand(newHistory, sqlConnect);
+
+            sqlCommand.Parameters.AddWithValue("@TicketHistoryID", ticketHistoryID);
+            sqlCommand.Parameters.AddWithValue("@TicketChangeDate", ticketChangeDate);
+            sqlCommand.Parameters.AddWithValue("@ServiceTicketID", serviceTicketID);
+            sqlCommand.Parameters.AddWithValue("@empID", empID);
+
+            sqlConnect.Open();
+            sqlCommand.ExecuteNonQuery();
+            sqlConnect.Close();
+        }
+
+        //String newDetailsNote = "INSERT INTO DetailsNote (DetailsNoteID, ServiceTicketID, NoteTitle, NoteBody) VALUES ";
+        protected void addNewDetailsNote(int detailsNoteID, int serviceTicketID, String noteTitle, String noteBody)
+        {
+            String newDetailsNote = "INSERT INTO DetailsNote (DetailsNoteID, ServiceTicketID, NoteTitle, NoteBody) VALUES (@DetailsNoteID, @ServiceTicketID, @NoteTitle, @NoteBody)";
+            String connectionString = ConfigurationManager.ConnectionStrings["Lab2"].ConnectionString;
+
+            SqlConnection sqlConnect = new SqlConnection(connectionString);
+            SqlCommand sqlCommand = new SqlCommand(newDetailsNote, sqlConnect);
+
+            sqlCommand.Parameters.AddWithValue("@DetailsNoteID", detailsNoteID);
+            sqlCommand.Parameters.AddWithValue("@ServiceTicketID", serviceTicketID);
+            sqlCommand.Parameters.AddWithValue("@NoteTitle", noteTitle);
+            sqlCommand.Parameters.AddWithValue("@NoteBody", noteBody);
+
+            sqlConnect.Open();
+            sqlCommand.ExecuteNonQuery();
+            sqlConnect.Close();
+        }
+        protected int getServiceID()
+        {
+            String sqlQuery = "SELECT MAX(ServiceID) as ServiceID FROM Service";
+            String connectionString = ConfigurationManager.ConnectionStrings["Lab2"].ConnectionString;
+
+            SqlConnection sqlConnect = new SqlConnection(connectionString);
+            sqlConnect.Open();
+            SqlCommand sqlCommand = new SqlCommand(sqlQuery, sqlConnect);
+            SqlDataReader reader = sqlCommand.ExecuteReader();
+            reader.Read();
+            int serviceID = (int)reader["ServiceID"] + 1;
+            reader.Close();
+            sqlConnect.Close();
+
+            return serviceID;
+        }
+        protected int getInventoryID()
+        {
+            String sqlQuery = "SELECT MAX(inventoryID) as InventoryID FROM Inventory";
+            String connectionString = ConfigurationManager.ConnectionStrings["Lab2"].ConnectionString;
+
+            SqlConnection sqlConnect = new SqlConnection(connectionString);
+            sqlConnect.Open();
+            SqlCommand sqlCommand = new SqlCommand(sqlQuery, sqlConnect);
+            SqlDataReader reader = sqlCommand.ExecuteReader();
+            reader.Read();
+            int inventoryID = (int)reader["InventoryID"] + 1;
+            reader.Close();
+            sqlConnect.Close();
+
+            return inventoryID;
+        }
+
+        protected int getEmployeeID()
+        {
+            String employee = ddlWorkflowEmp.SelectedValue.Substring(3);
+
+            String sqlQuery = "SELECT empID, concat(lastname, ', ', firstname) as Employee from Employee WHERE concat(lastname, ', ', firstname) = " + "'" + employee + "'";
+            String connectionString = ConfigurationManager.ConnectionStrings["Lab2"].ConnectionString;
+
+            SqlConnection sqlConnect = new SqlConnection(connectionString);
+            sqlConnect.Open();
+            SqlCommand sqlCommand = new SqlCommand(sqlQuery, sqlConnect);
+            SqlDataReader reader = sqlCommand.ExecuteReader();
+            reader.Read();
+            int empID = (int)reader["empID"];
+            reader.Close();
+            sqlConnect.Close();
+
+            return empID;
+        }
+
+        protected int getDetailsNoteID()
+        {
+            String sqlQuery = "SELECT MAX(DetailsNoteID) as MaxDetailsNote FROM DetailsNote";
+            String connectionString = ConfigurationManager.ConnectionStrings["Lab2"].ConnectionString;
+
+            SqlConnection sqlConnect = new SqlConnection(connectionString);
+            sqlConnect.Open();
+            SqlCommand sqlCommand = new SqlCommand(sqlQuery, sqlConnect);
+            SqlDataReader reader = sqlCommand.ExecuteReader();
+
+            int detailsNoteID;
+            reader.Read();
+            if (reader["MaxDetailsNote"] == null || reader["MaxDetailsNote"].ToString() == "")
+            {
+                detailsNoteID = 1;
+            }
+            else
+            {
+                detailsNoteID = (int)reader["MaxDetailsNote"] + 1;
+            }
+            reader.Close();
+            sqlConnect.Close();
+
+            return detailsNoteID;
+        }
+
+        protected int getServiceTicketID()
+        {
+            String ticketQuery = "SELECT MAX(ServiceTicketID) as TicketID from Service_Ticket";
+            String connectionString = ConfigurationManager.ConnectionStrings["Lab2"].ConnectionString;
+            SqlConnection sqlConnect = new SqlConnection(connectionString);
+            sqlConnect.Open();
+            SqlCommand sqlCommand = new SqlCommand(ticketQuery, sqlConnect);
+            SqlDataReader reader = sqlCommand.ExecuteReader();
+            reader.Read();
+            int ticketID;
+            if (reader["TicketID"].ToString() == "" || reader["TicketID"].ToString() == null)
+            {
+                ticketID = 1;
+            }
+            else
+            {
+                ticketID = (int)reader["TicketID"] + 1;
+            }
+            reader.Close();
+            sqlConnect.Close();
+
+            return ticketID;
+        }
+
+        protected int getTicketHistoryID()
+        {
+            String ticketHistoryQuery = "SELECT MAX(ServiceTicketID) as TicketHistory from TicketHistory";
+
+            String connectionString = ConfigurationManager.ConnectionStrings["Lab2"].ConnectionString;
+            SqlConnection sqlConnect = new SqlConnection(connectionString);
+            sqlConnect.Open();
+            SqlCommand sqlCommand = new SqlCommand(ticketHistoryQuery, sqlConnect);
+            SqlDataReader reader = sqlCommand.ExecuteReader();
+            reader.Read();
+            int ticketHistoryID;
+            if (reader["TicketHistory"].ToString() == "" || reader["TicketHistory"].ToString() == null)
+            {
+                ticketHistoryID = 1;
+            }
+            else
+            {
+                ticketHistoryID = (int)reader["TicketHistory"] + 1;
+            }
+            reader.Close();
+            sqlConnect.Close();
+
+            return ticketHistoryID;
         }
     }
 }

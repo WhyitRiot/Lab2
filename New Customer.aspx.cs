@@ -32,14 +32,29 @@ namespace Lab2
             //CustomerID is recieved from separate function.
             int maxCustID = getCustID();
 
+            String serviceType;
+
+            if (chbxMove.Checked && chbxAuction.Checked)
+            {
+                serviceType = "Move, Auction";
+            }
+            else if (chbxMove.Checked)
+            {
+                serviceType = "Move";
+            }
+            else
+            {
+                serviceType = "Auction";
+            }
+
             String address = txtStreet.Text + " " + txtCity.Text + ", " + txtState.Text + " " + txtZip.Text;
 
             //Adding a customer uses the Customer class
             Customer newCustomer = new Customer(txtFirstName.Text, txtLastName.Text, maxCustID, txtPhone.Text, address);
 
-            String sqlQuery = "INSERT INTO Customer(CustomerID, FirstName, LastName, Phone, \"Address\", Email, ContactMethod, MethodType, ServiceType) VALUES ("
-                        + newCustomer.CustomerID + ", '" + newCustomer.FirstName + "', '" + newCustomer.LastName + "', '"
-                        + newCustomer.Phone + "', '" + newCustomer.Address + "', '" + txtEmail.Text + "', '" + HowDidDropDown.SelectedValue + "', '" + txtHear.Text + "', '" + ChooseServiceDropDown.SelectedValue + "')";
+            String sqlQuery = "INSERT INTO Customer(CustomerID, FirstName, LastName, Phone, \"Address\", Email, ContactMethod, MethodType, ServiceType) VALUES " +
+                                                  "(@CustomerID, @FirstName, @LastName, @Phone, @Address, @Email, @ContactMethod, @MethodType, @ServiceType)";
+
 
             String conString = ConfigurationManager.ConnectionStrings["Lab2"].ConnectionString;
 
@@ -47,6 +62,17 @@ namespace Lab2
             sqlConnect.Open();
 
             SqlCommand sqlCommand = new SqlCommand(sqlQuery, sqlConnect);
+
+            sqlCommand.Parameters.AddWithValue("@CustomerID", newCustomer.CustomerID);
+            sqlCommand.Parameters.AddWithValue("@FirstName", newCustomer.FirstName);
+            sqlCommand.Parameters.AddWithValue("@LastName", newCustomer.LastName);
+            sqlCommand.Parameters.AddWithValue("@Phone", newCustomer.Phone);
+            sqlCommand.Parameters.AddWithValue("@Address", newCustomer.Address);
+            sqlCommand.Parameters.AddWithValue("@Email", txtEmail.Text);
+            sqlCommand.Parameters.AddWithValue("@ContactMethod", HowDidDropDown.SelectedValue);
+            sqlCommand.Parameters.AddWithValue("@MethodType", txtHear.Text);
+            sqlCommand.Parameters.AddWithValue("@ServiceType", serviceType);
+
 
             int result = sqlCommand.ExecuteNonQuery();
 
@@ -67,6 +93,12 @@ namespace Lab2
             txtCity.Text = "";
             txtState.Text = "";
             txtZip.Text = "";
+            HowDidDropDown.ClearSelection();
+            PhoneTypeDropDown.ClearSelection();
+            txtHear.Text = "";
+            txtEmail.Text = "";
+            chbxMove.Checked = false;
+            chbxAuction.Checked = false;
         }
 
         protected void GenerateData(object sender, EventArgs e)
@@ -78,6 +110,13 @@ namespace Lab2
             txtCity.Text = "Harrisonburg";
             txtState.Text = "VA";
             txtZip.Text = "22801";
+            HowDidDropDown.SelectedIndex = 1;
+            txtHear.Text = "Word of mouth.";
+            PhoneTypeDropDown.SelectedIndex = 1;
+            txtEmail.Text = "test@gmail.com";
+            chbxAuction.Checked = true;
+            chbxMove.Checked = true;
+
         }
         
         //Function gets customer ID by retrieving the greatest CustomerID from the DB, and adding one to it.

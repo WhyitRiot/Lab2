@@ -26,6 +26,9 @@
                         <asp:HyperLink ID="lnkNewWorkflow" runat="server" NavigateUrl="~/Work Flow.aspx">New Workflow</asp:HyperLink>
                     </asp:TableCell>
                     <asp:TableCell>
+                        <asp:HyperLink ID="lnkEditWorkFlow" runat="server" NavigateUrl="~/Edit Work Flow.aspx">Edit Workflow</asp:HyperLink>
+                    </asp:TableCell>
+                    <asp:TableCell>
                         <asp:HyperLink ID="lnkCurrentCustomers" runat="server" NavigateUrl="~/Current Customers.aspx">Current Customers</asp:HyperLink>
                     </asp:TableCell>
                     <asp:TableCell>

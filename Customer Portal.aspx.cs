@@ -21,21 +21,40 @@ namespace Lab2
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            message.Text = "Hello" + Username.Text + "!";
+            message.Text = "Hello " + Username.Text + "!";
             message.Text = message.Text + "<br/>  You have successfuly created a profile with the following details.";
 
             ShowUserName.Text = Username.Text;
-            ShowEmail.Text = Email.Text;
+            ShowEmail.Text = EmailID.Text;
+            ShowStreetAddress.Text = StreetAddress.Text;
+            ShowPhone.Text = PhoneNumber.Text;
+            ShowZipCode.Text = ZipCode.Text;
+            ShowCity.Text = City.Text;
+            ShowState.Text = State.Text;
 
-            ShowAddressLabel.Text = "Address";
+
+
+
+
+            ShowStreetAddressLabel.Text = "Address";
             ShowPhoneLabel.Text = "Phone";
             ShowUserNameLabel.Text = "Username";
             ShowEmailIDLabel.Text = "Email ID";
+            ShowZipCodelabel.Text = "Zip Code";
+            ShowStateLabel.Text = "State";
+            ShowCityLabel.Text = "City";
 
             Username.Text = "";
-            Email.Text = "";
+            EmailID.Text = "";
+            PhoneNumber.Text = "";
+            StreetAddress.Text = "";
+            ZipCode.Text = "";
+            State.Text = "";
+            City.Text = "";
 
 
+
+            Response.Redirect("CustomerPortalHome.aspx");
 
 
 

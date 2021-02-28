@@ -25,6 +25,10 @@
 <body>
     <form id="form1" runat="server">
         <div>
+            <fieldset style="height: 370px">
+    <legend>Service Request</legend>
+    
+            <asp:Panel ID="Panel1" runat="server" BackColor="Blue" Height="35px" Width="1500px" ></asp:Panel>
             <asp:Table CssClass="auto-style1" runat="server">
                 <asp:TableRow>
                     <asp:TableCell>
@@ -41,7 +45,7 @@
                         </asp:Label>
                     </asp:TableCell>
                     <asp:TableCell>
-                        <asp:TextBox ID="Email ID" runat="server" TextMode="Email"></asp:TextBox>                 
+                        <asp:TextBox ID="EmailID" runat="server" TextMode="Email"></asp:TextBox>                 
                     </asp:TableCell>
                 </asp:TableRow>
                 <asp:TableRow>
@@ -62,18 +66,47 @@
                 </asp:TableRow>
                 <asp:TableRow>
                     <asp:TableCell>
-                        <asp:Label ID="Label4" runat="server" Text="Address"></asp:Label>
+                        <asp:Label ID="Label4" runat="server" Text="Street Address"></asp:Label>
                     </asp:TableCell>
                     <asp:TableCell>
-                        <asp:TextBox ID="TextBox4" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="StreetAddress" runat="server"></asp:TextBox>
                     </asp:TableCell>
                 </asp:TableRow>
+
+                 <asp:TableRow>
+                    <asp:TableCell>
+                        <asp:Label ID="Label7" runat="server" Text="City"></asp:Label>
+                    </asp:TableCell>
+                    <asp:TableCell>
+                        <asp:TextBox ID="City" runat="server"></asp:TextBox>
+                    </asp:TableCell>
+                </asp:TableRow>
+
+                <asp:TableRow>
+                    <asp:TableCell>
+                        <asp:Label ID="Label8" runat="server" Text="State"></asp:Label>
+                    </asp:TableCell>
+                    <asp:TableCell>
+                        <asp:TextBox ID="State" runat="server"></asp:TextBox>
+                    </asp:TableCell>
+                </asp:TableRow>
+
+
+                  <asp:TableRow>
+                    <asp:TableCell>
+                        <asp:Label ID="Label16" runat="server" Text="Zip Code"></asp:Label>
+                    </asp:TableCell>
+                    <asp:TableCell>
+                        <asp:TextBox ID="ZipCode" runat="server"></asp:TextBox>
+                    </asp:TableCell>
+                </asp:TableRow>
+
                 <asp:TableRow>
                     <asp:TableCell>
                         <asp:Label ID="Label5" runat="server" Text="Phone Number"></asp:Label>
                     </asp:TableCell>
                     <asp:TableCell>
-                        <asp:TextBox ID="TextBox5" runat="server" TextMode="Phone"></asp:TextBox>
+                        <asp:TextBox ID="PhoneNumber" runat="server" TextMode="Phone"></asp:TextBox>
                     </asp:TableCell>
                 </asp:TableRow>
              <asp:TableRow>
@@ -82,13 +115,14 @@
                  </asp:TableCell>
                  <asp:TableCell>
                      <br />
-                     <asp:Button ID="Button1" runat="server" Text="Create" OnClick="Button1_Click"/>
+                     <asp:Button ID="Button1" runat="server" Text="Login" OnClick="Button1_Click"/>
                  </asp:TableCell>
              </asp:TableRow>
             </asp:Table>
 
             <asp:Label ID="message" runat="server" Font-Size="Medium" ForeColor="Red" ></asp:Label>
-        </div>
+        </fieldset>
+                </div>
     </form>
     <asp:Table Class="auto-style1" runat="server">
         <asp:TableRow>
@@ -109,12 +143,40 @@
         </asp:TableRow>
         <asp:TableRow>
             <asp:TableCell CssClass="auto-style2">
-                <asp:Label ID="ShowAddressLabel" runat="server" ></asp:Label>
+                <asp:Label ID="ShowStreetAddressLabel" runat="server" ></asp:Label>
             </asp:TableCell>
             <asp:TableCell>
-                <asp:Label ID="ShowAddress" runat="server" ></asp:Label>
+                <asp:Label ID="ShowStreetAddress" runat="server" ></asp:Label>
             </asp:TableCell>
         </asp:TableRow>
+
+         <asp:TableRow>
+            <asp:TableCell CssClass="auto-style2">
+                <asp:Label ID="ShowZipCodelabel" runat="server" ></asp:Label>
+            </asp:TableCell>
+            <asp:TableCell>
+                <asp:Label ID="ShowZipCode" runat="server" ></asp:Label>
+            </asp:TableCell>
+        </asp:TableRow>
+
+        <asp:TableRow>
+            <asp:TableCell CssClass="auto-style2">
+                <asp:Label ID="ShowCityLabel" runat="server" ></asp:Label>
+            </asp:TableCell>
+            <asp:TableCell>
+                <asp:Label ID="ShowCity" runat="server" ></asp:Label>
+            </asp:TableCell>
+        </asp:TableRow>
+
+        <asp:TableRow>
+            <asp:TableCell CssClass="auto-style2">
+                <asp:Label ID="ShowStateLabel" runat="server" ></asp:Label>
+            </asp:TableCell>
+            <asp:TableCell>
+                <asp:Label ID="ShowState" runat="server" ></asp:Label>
+            </asp:TableCell>
+        </asp:TableRow>
+
         <asp:TableRow>
             <asp:TableCell CssClass="auto-style1">
                 <asp:Label ID="ShowPhoneLabel" runat="server" ></asp:Label>
@@ -124,5 +186,8 @@
             </asp:TableCell>
         </asp:TableRow>
     </asp:Table>
+
+
+    
 </body>
 </html>

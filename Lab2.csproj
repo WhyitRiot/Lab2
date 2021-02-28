@@ -70,6 +70,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Customer Portal.aspx" />
+    <Content Include="CustomerPortalHome.aspx" />
     <Content Include="Master.Master" />
     <None Include="Scripts\jquery-3.5.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.5.1.js" />
@@ -86,7 +88,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Auction.cs" />
+    <Compile Include="Customer Portal.aspx.cs">
+      <DependentUpon>Customer Portal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Customer Portal.aspx.designer.cs">
+      <DependentUpon>Customer Portal.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Customer.cs" />
+    <Compile Include="CustomerPortalHome.aspx.cs">
+      <DependentUpon>CustomerPortalHome.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CustomerPortalHome.aspx.designer.cs">
+      <DependentUpon>CustomerPortalHome.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Employee.cs" />
     <Compile Include="Master.Master.cs">
       <DependentUpon>Master.Master</DependentUpon>

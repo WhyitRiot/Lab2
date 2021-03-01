@@ -32,6 +32,22 @@
             <asp:Table CssClass="auto-style1" runat="server">
                 <asp:TableRow>
                     <asp:TableCell>
+                        <asp:Label ID="lblFirstname" runat="server" Text="First Name"></asp:Label>
+                    </asp:TableCell>
+                    <asp:TableCell>
+                        <asp:TextBox ID="txtFirstname" runat="server"></asp:TextBox>
+                    </asp:TableCell>
+                </asp:TableRow>
+                <asp:TableRow>
+                    <asp:TableCell>
+                        <asp:Label ID="lblLastname" runat="server" Text="Last Name"></asp:Label>
+                    </asp:TableCell>
+                    <asp:TableCell>
+                        <asp:TextBox ID="txtLastname" runat="server"></asp:TextBox>
+                    </asp:TableCell>
+                </asp:TableRow>
+                <asp:TableRow>
+                    <asp:TableCell>
                         <asp:Label ID="lblUsername" runat="server" Text="Username">
                         </asp:Label>
                     </asp:TableCell>
@@ -45,7 +61,7 @@
                         </asp:Label>
                     </asp:TableCell>
                     <asp:TableCell>
-                        <asp:TextBox ID="txtEmailID" runat="server" TextMode="Email"></asp:TextBox>                 
+                        <asp:TextBox ID="txtEmailID" runat="server"></asp:TextBox>                 
                     </asp:TableCell>
                 </asp:TableRow>
                 <asp:TableRow>
@@ -68,8 +84,14 @@
                     <asp:TableCell>
                         <asp:Label ID="lblAddress" runat="server" Text="Address"></asp:Label>
                     </asp:TableCell>
+                    
+                </asp:TableRow>
+                <asp:TableRow>
                     <asp:TableCell>
-                        <asp:TextBox ID="txtAddress" runat="server"></asp:TextBox>
+                        <asp:Label ID="lblStreet" runat="server" Text="Street"></asp:Label>
+                    </asp:TableCell>
+                    <asp:TableCell>
+                        <asp:TextBox ID="txtStreet" runat="server"></asp:TextBox>
                     </asp:TableCell>
                 </asp:TableRow>
 

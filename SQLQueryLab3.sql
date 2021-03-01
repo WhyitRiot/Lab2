@@ -1,5 +1,5 @@
 
-Use Lab2;
+Use Lab3;
 
 CREATE TABLE Customer
 (
@@ -202,8 +202,11 @@ Username varchar (20),
 
 UserEmail varchar(40),
 
-PRIMARY KEY (UserID));
+UserPhone varchar(40),
 
+UserAddress varchar(80)
+
+PRIMARY KEY (UserID));
  
 
 CREATE TABLE Pass (
@@ -224,12 +227,9 @@ FOREIGN KEY (UserID) references Person (UserID)
 
 INSERT INTO Person (FirstName, LastName, UserName, UserEmail) VALUES ('Jeremy', 'Ezell', 'admin', 'jeremy.ezell@jmu.edu');
 
- 
-
 INSERT INTO Pass (UserID, Username, PasswordHash) VALUES ('1','admin', '1000:N4xiyBysNCw3IIJg6tT0lCISUVDIzyk2:GyY1JTgR6NLal1xqOxa0IUzRxvY=');
 
-select * from Person;
-select * from pass;
-SELECT UserName, PasswordHashFROM PassWHERE UserName= 'admin'AND PasswordHash = 'password';
+USE AUTH;
 
-USE Lab2;
+Select * from person;
+Select * from pass;

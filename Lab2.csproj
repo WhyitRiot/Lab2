@@ -72,15 +72,12 @@
   <ItemGroup>
     <Content Include="Customer Portal.aspx" />
     <Content Include="CustomerPortalHome.aspx" />
-    <Content Include="Customer Search.aspx" />
-    <Content Include="Edit Work Flow.aspx" />
     <Content Include="Master.Master" />
     <None Include="Scripts\jquery-3.5.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.5.1.js" />
     <Content Include="Scripts\jquery-3.5.1.min.js" />
     <Content Include="Scripts\jquery-3.5.1.slim.js" />
     <Content Include="Scripts\jquery-3.5.1.slim.min.js" />
-    <Content Include="TEST HASH PASSWORDS.aspx" />
     <Content Include="Web.config" />
     <Content Include="New Customer.aspx" />
     <Content Include="Current Customers.aspx" />
@@ -97,13 +94,6 @@
     <Compile Include="Customer Portal.aspx.designer.cs">
       <DependentUpon>Customer Portal.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Customer Search.aspx.cs">
-      <DependentUpon>Customer Search.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Customer Search.aspx.designer.cs">
-      <DependentUpon>Customer Search.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Customer.cs" />
     <Compile Include="CustomerPortalHome.aspx.cs">
       <DependentUpon>CustomerPortalHome.aspx</DependentUpon>
@@ -111,13 +101,6 @@
     </Compile>
     <Compile Include="CustomerPortalHome.aspx.designer.cs">
       <DependentUpon>CustomerPortalHome.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Edit Work Flow.aspx.cs">
-      <DependentUpon>Edit Work Flow.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Edit Work Flow.aspx.designer.cs">
-      <DependentUpon>Edit Work Flow.aspx</DependentUpon>
     </Compile>
     <Compile Include="Employee.cs" />
     <Compile Include="Master.Master.cs">
@@ -130,7 +113,6 @@
     <Compile Include="Inventory.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="Move.cs" />
-    <Compile Include="PasswordHash.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service.cs" />
     <Compile Include="New Customer.aspx.cs">
@@ -160,13 +142,6 @@
     </Compile>
     <Compile Include="Home.aspx.designer.cs">
       <DependentUpon>Home.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="TEST HASH PASSWORDS.aspx.cs">
-      <DependentUpon>TEST HASH PASSWORDS.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="TEST HASH PASSWORDS.aspx.designer.cs">
-      <DependentUpon>TEST HASH PASSWORDS.aspx</DependentUpon>
     </Compile>
     <Compile Include="Work Flow.aspx.cs">
       <DependentUpon>Work Flow.aspx</DependentUpon>

@@ -18,13 +18,18 @@
             </asp:TableRow>
         <asp:TableRow>
             <asp:TableCell>
-                <asp:Label ID="lblCustomerLastName" runat="server" Text="Enter Last Name: "></asp:Label>
+<%--                <asp:Label ID="lblCustomerLastName" runat="server" Text="Enter Last Name: "></asp:Label>--%>
             </asp:TableCell>
             <asp:TableCell>
-                <asp:TextBox ID="txtCustomerLastName" runat="server"></asp:TextBox>
+<%--                <asp:TextBox ID="txtCustomerLastName" runat="server"></asp:TextBox>--%>
             </asp:TableCell>
             <asp:TableCell>
                 <asp:Button ID="btnSearch" runat="server" Text="Search" OnClick="btnSearch_Click" />
+            </asp:TableCell>
+        </asp:TableRow>
+        <asp:TableRow>
+            <asp:TableCell>
+                <asp:GridView ID="grdServiceTickets" runat="server"></asp:GridView>
             </asp:TableCell>
         </asp:TableRow>
     </asp:Table>

@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
- <header>
+    <header>
                 <asp:Label 
                 ID="studentLabel" 
                 runat="server" 
@@ -91,7 +91,8 @@
             SelectCommand="Select concat(lastname, ', ', firstname) as CurrentCustomer from Customer;">
         </asp:SqlDataSource>
             </asp:TableCell>
-        </asp:TableRow>
+</asp:TableRow>
+        
     </asp:Table>
 
 

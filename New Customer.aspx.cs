@@ -29,6 +29,16 @@ namespace Lab2
         //Function to create customer from data in text boxes.
         protected void CreateCustomer(object sender, EventArgs e)
         {
+            HttpUtility.HtmlEncode(txtCity.Text);
+            HttpUtility.HtmlEncode(txtEmail.Text);
+            HttpUtility.HtmlEncode(txtFirstName.Text);
+            HttpUtility.HtmlEncode(txtHear.Text);
+            HttpUtility.HtmlEncode(txtLastName.Text);
+            HttpUtility.HtmlEncode(txtPhone.Text);
+            HttpUtility.HtmlEncode(txtState.Text);
+            HttpUtility.HtmlEncode(txtStreet.Text);
+            HttpUtility.HtmlEncode(txtZip.Text);
+
             //CustomerID is recieved from separate function.
             int maxCustID = getCustID();
 
@@ -99,13 +109,22 @@ namespace Lab2
             txtEmail.Text = "";
             chbxMove.Checked = false;
             chbxAuction.Checked = false;
+            HttpUtility.HtmlEncode(txtCity.Text);
+            HttpUtility.HtmlEncode(txtEmail.Text);
+            HttpUtility.HtmlEncode(txtFirstName.Text);
+            HttpUtility.HtmlEncode(txtHear.Text);
+            HttpUtility.HtmlEncode(txtLastName.Text);
+            HttpUtility.HtmlEncode(txtPhone.Text);
+            HttpUtility.HtmlEncode(txtState.Text);
+            HttpUtility.HtmlEncode(txtStreet.Text);
+            HttpUtility.HtmlEncode(txtZip.Text);
         }
 
         protected void GenerateData(object sender, EventArgs e)
         {
             txtFirstName.Text = "Wyatt";
             txtLastName.Text = "Putnam";
-            txtPhone.Text = "000-000-0000";
+            txtPhone.Text = "804-267-7840";
             txtStreet.Text = "123 Street";
             txtCity.Text = "Harrisonburg";
             txtState.Text = "VA";
@@ -116,7 +135,15 @@ namespace Lab2
             txtEmail.Text = "test@gmail.com";
             chbxAuction.Checked = true;
             chbxMove.Checked = true;
-
+            HttpUtility.HtmlEncode(txtCity.Text);
+            HttpUtility.HtmlEncode(txtEmail.Text);
+            HttpUtility.HtmlEncode(txtFirstName.Text);
+            HttpUtility.HtmlEncode(txtHear.Text);
+            HttpUtility.HtmlEncode(txtLastName.Text);
+            HttpUtility.HtmlEncode(txtPhone.Text);
+            HttpUtility.HtmlEncode(txtState.Text);
+            HttpUtility.HtmlEncode(txtStreet.Text);
+            HttpUtility.HtmlEncode(txtZip.Text);
         }
         
         //Function gets customer ID by retrieving the greatest CustomerID from the DB, and adding one to it.
@@ -133,6 +160,8 @@ namespace Lab2
             SqlDataReader reader = sqlCommand.ExecuteReader();
             reader.Read();
             String result = reader["CustID"].ToString();
+
+
             if (reader["CustID"] == null || reader["CustID"] == "")
             {
                 maxCustID = 1;
@@ -143,6 +172,7 @@ namespace Lab2
             }
             reader.Close();
             return maxCustID;
+
         }
     }
 }

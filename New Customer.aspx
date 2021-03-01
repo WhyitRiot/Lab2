@@ -99,12 +99,27 @@
                      </asp:TableRow>
                      <asp:TableRow>
                          <asp:TableCell>
-                             <asp:Label ID="lblEmail" runat="server" Text="Enter email"></asp:Label>
+                             <asp:Label ID="lblEmail" runat="server" Text="Enter Email: "></asp:Label>
                          </asp:TableCell>
                          <asp:TableCell>
                              <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
                              <asp:RequiredFieldValidator ID="reqtxtEmail" runat="server" ErrorMessage="Cannot be empty" ControlToValidate="txtEmail"></asp:RequiredFieldValidator>
-
+                         </asp:TableCell>
+                     </asp:TableRow>
+                     <asp:TableRow>
+                         <asp:TableCell>
+                             <asp:Label ID="lblMovingCalendar" runat="server" Text="Select Date for Moving: "></asp:Label>
+                         </asp:TableCell>
+                         <asp:TableCell>
+                             <asp:Calendar ID="MovingCalendar" runat="server"></asp:Calendar>
+                         </asp:TableCell>
+                     </asp:TableRow>
+                     <asp:TableRow>
+                         <asp:TableCell>
+                             <asp:Label ID="lblAuction" runat="server" Text="Select Date for Auction: "></asp:Label>    
+                         </asp:TableCell>
+                         <asp:TableCell>
+                             <asp:Calendar ID="AuctionCalendar" runat="server"></asp:Calendar>
                          </asp:TableCell>
                      </asp:TableRow>
                  </asp:Table>

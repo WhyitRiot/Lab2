@@ -7,6 +7,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data.SqlClient;
+
 
 //Created by Wyatt T. Putnam
 
@@ -29,6 +31,15 @@ namespace Lab2
         //Function to add a Service_Ticket and a Ticket History to the DB
         protected void btnAddWorkFlow(object sender, EventArgs e)
         {
+            HttpUtility.HtmlEncode(txtboxDestinationAddress.Text);
+            HttpUtility.HtmlEncode(txtboxOriginAddress.Text);
+            HttpUtility.HtmlEncode(txtDestination.Text);
+            HttpUtility.HtmlEncode(txtNoteBody.Text);
+            HttpUtility.HtmlEncode(txtNoteTitle.Text);
+            HttpUtility.HtmlEncode(txtOrigin.Text);
+            HttpUtility.HtmlEncode(txtTicketStatus.Text);
+
+
             if (ddlWorkflowCustomer.SelectedValue.Equals("<--Select-->") || ddlWorkflowEmp.SelectedValue.Equals("<--Select-->"))
             {
                 if (ddlWorkflowCustomer.SelectedValue.Equals("<--Select-->"))
@@ -42,6 +53,14 @@ namespace Lab2
             }
             else
             {
+                HttpUtility.HtmlEncode(txtboxDestinationAddress.Text);
+                HttpUtility.HtmlEncode(txtboxOriginAddress.Text);
+                HttpUtility.HtmlEncode(txtDestination.Text);
+                HttpUtility.HtmlEncode(txtNoteBody.Text);
+                HttpUtility.HtmlEncode(txtNoteTitle.Text);
+                HttpUtility.HtmlEncode(txtOrigin.Text);
+                HttpUtility.HtmlEncode(txtTicketStatus.Text);
+
                 lblEmptyEmp.Text = "";
                 lblEmptyCust.Text = "";
                 String connectionString = ConfigurationManager.ConnectionStrings["Lab2"].ConnectionString;
@@ -296,11 +315,11 @@ namespace Lab2
 
             sqlCommand.Parameters.AddWithValue("@ServiceID", serviceID);
             sqlCommand.Parameters.AddWithValue("@empID", empID);
-
             sqlConnect.Open();
             sqlCommand.ExecuteNonQuery();
             sqlConnect.Close();
         }
+
 
         protected void addNewMove(int serviceID, int empID, String originAddress, String destAddress)
         {
@@ -373,6 +392,7 @@ namespace Lab2
             sqlCommand.Parameters.AddWithValue("@InventoryID", inventoryID);
             sqlCommand.Parameters.AddWithValue("@CustomerID", customerID);
             sqlCommand.Parameters.AddWithValue("@Date", date);
+
 
             sqlConnect.Open();
             sqlCommand.ExecuteNonQuery();
@@ -517,7 +537,6 @@ namespace Lab2
 
             return ticketID;
         }
-
         protected int getTicketHistoryID()
         {
             String ticketHistoryQuery = "SELECT MAX(ServiceTicketID) as TicketHistory from TicketHistory";
@@ -541,6 +560,7 @@ namespace Lab2
             sqlConnect.Close();
 
             return ticketHistoryID;
+
         }
     }
 }

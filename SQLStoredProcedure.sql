@@ -1,0 +1,1 @@
+USE AUTH;CREATE PROCEDURE [dbo].[JeremyEzellLab3]@Username AS NVARCHAR(50)AS BEGINSET NOCOUNT ON;SELECT Username, PasswordHashFROM PassWHERE Username=@UsernameEND

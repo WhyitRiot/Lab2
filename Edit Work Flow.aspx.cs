@@ -68,6 +68,7 @@ namespace Lab2
             }
         }
 
+
         protected void btnEditTicket(object sender, EventArgs e)
         {
             if (ddlServiceTickets.SelectedValue.Equals("<--Select-->"))
@@ -224,6 +225,30 @@ namespace Lab2
 
                 sqlConnect.Close();
 
+            }
+        }
+        
+        protected void btn_Assign(object sender, EventArgs e)
+        {
+            if (ddlAuction.SelectedValue.Equals("<--Select-->") || ddlTicket.SelectedValue.Equals("<--Select-->"))
+            {
+                lblStatus.Text = "Please select an AuctionID / Service Ticket";
+            }
+            else
+            {
+                lblStatus.Text = "";
+                String serviceTicket = ddlTicket.SelectedValue.Substring(0, 0);
+                String auctionID = ddlAuction.SelectedValue;
+
+                String sqlQuery = "UPDATE Auction SET ServiceID = @ServiceID WHERE AuctionID = @AuctionID";
+                String connectionString = ConfigurationManager.ConnectionStrings["Lab2"].ConnectionString;
+                SqlConnection sqlConnect = new SqlConnection(connectionString);
+                SqlCommand sqlCommand = new SqlCommand(sqlQuery, sqlConnect);
+                sqlCommand.Parameters.AddWithValue("@ServiceID", serviceTicket);
+                sqlCommand.Parameters.AddWithValue("@AuctionID", auctionID);
+                sqlConnect.Open();
+                sqlCommand.ExecuteNonQuery();
+                sqlConnect.Close();
             }
         }
 

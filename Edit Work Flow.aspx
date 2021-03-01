@@ -72,6 +72,26 @@
             </asp:DropDownList>
             <asp:Label ID="lblEmpEmptyError" runat="server" Text=""></asp:Label>
             <br />
+            <asp:Label ID="lblAssignToAuction" runat="server" Text="Assign to Auction"></asp:Label>
+            <br />
+            <asp:DropDownList ID="ddlTicket" runat="server"
+                DataSourceID="dataWKFLServiceTickets"
+                DataValueField="Ticket"
+                AppendDataBoundItems="true"
+                AutoPostBack="true">
+               <asp:ListItem Text="<--Select-->"></asp:ListItem>
+            </asp:DropDownList>
+            <br />
+            <asp:DropDownList ID="ddlAuction" runat="server"
+                DataSourceID="dataAuctionSQL"
+                DataValueField="AuctionID"
+                AppendDataBoundItems="true">
+                <asp:ListItem Text="<--Select-->"></asp:ListItem>
+            </asp:DropDownList>
+        <br />
+        <asp:Label ID="lblStatus" runat="server" Text=""></asp:Label>
+        <br />
+        <asp:Button ID="btnAssign" runat="server" Text="Assign to Auction Event" OnClick="btn_Assign" CausesValidation="false" />
 
         <%--Buttons to save changes, which writes the data in the panel to the DB, and one to cancel which clears all textboxes.--%>
             <asp:Button ID="btnSaveChanges" runat="server" Text="Save Changes" OnClick="btnSaveChanges_Click" />
@@ -93,6 +113,11 @@
                  ConnectionString="<%$ ConnectionStrings:Lab2 %>"
                  SelectCommand="Select concat(ServiceTicketID, ', ', Customer.LastName, ', ', Customer.FirstName) as Ticket 
                                 from Service_Ticket INNER JOIN Customer ON Customer.CustomerID = Service_Ticket.CustomerID;">
+            </asp:SqlDataSource>
+            
+            <asp:SqlDataSource ID="dataAuctionSQL" runat="server"
+                 ConnectionString="<%$ ConnectionStrings:Lab2 %>"
+                 SelectCommand="Select AuctionID from Auction">
             </asp:SqlDataSource>
 <%--            <asp:SqlDataSource ID="dataWKFLTicketHistory" runat="server"
                  ConnectionString="<%$ ConnectionStrings:Lab2 %>"

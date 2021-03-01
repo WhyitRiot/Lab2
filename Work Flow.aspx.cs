@@ -142,7 +142,7 @@ namespace Lab2
                                   "FROM Service_Ticket FULL OUTER JOIN Customer ON Service_Ticket.CustomerID = Customer.CustomerID " +
                                   "FULL OUTER JOIN Employee ON Service_Ticket.empID = Employee.empID " +
                                   "WHERE concat(ServiceTicketID, ', ', Customer.lastname, ', ', Customer.firstname) = '" + currentTicket + "';";
-                SqlConnection sqlConnect = new SqlConnection("Server=Localhost;Database=Lab2;Trusted_Connection=Yes;");
+                SqlConnection sqlConnect = new SqlConnection(ConfigurationManager.ConnectionStrings["Lab2"].ConnectionString);
 
                 SqlDataAdapter sqlAdapter = new SqlDataAdapter(sqlQuery, sqlConnect);
 
@@ -320,13 +320,14 @@ namespace Lab2
 
         protected void addNewAuction(int serviceID, int empID)
         {
-            String newAuction = "INSERT INTO Auction (ServiceID, empID) VALUES (@ServiceID, @empID)";
+            String newAuction = "INSERT INTO Auction (AuctionID, ServiceID, empID) VALUES (@AuctionID, @ServiceID, @empID)";
 
             String connectionString = ConfigurationManager.ConnectionStrings["Lab2"].ConnectionString;
 
             SqlConnection sqlConnect = new SqlConnection(connectionString);
             SqlCommand sqlCommand = new SqlCommand(newAuction, sqlConnect);
-
+            int auctionID = getAuctionID();
+            sqlCommand.Parameters.AddWithValue("@AuctionID", auctionID);
             sqlCommand.Parameters.AddWithValue("@ServiceID", serviceID);
             sqlCommand.Parameters.AddWithValue("@empID", empID);
             sqlConnect.Open();
@@ -575,6 +576,31 @@ namespace Lab2
 
             return ticketHistoryID;
 
+        }
+
+        protected int getAuctionID()
+        {
+            String auctionQuery = "SELECT MAX(AuctionID) as AuctionID from Auction";
+
+            String connectionString = ConfigurationManager.ConnectionStrings["Lab2"].ConnectionString;
+            SqlConnection sqlConnect = new SqlConnection(connectionString);
+            sqlConnect.Open();
+            SqlCommand sqlCommand = new SqlCommand(auctionQuery, sqlConnect);
+            SqlDataReader reader = sqlCommand.ExecuteReader();
+            reader.Read();
+            int auctionID;
+            if (reader["AuctionID"].ToString() == "" || reader["AuctionID"].ToString() == null)
+            {
+                auctionID = 1;
+            }
+            else
+            {
+                auctionID = (int)reader["AuctionID"] + 1;
+            }
+            reader.Close();
+            sqlConnect.Close();
+
+            return auctionID;
         }
     }
 }

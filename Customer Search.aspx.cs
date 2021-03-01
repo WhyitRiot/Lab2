@@ -30,11 +30,12 @@ namespace Lab2
                               "ServiceID, Service_Ticket.empID, concat(Employee.lastname, ', ', Employee.firstname) as Employee " +
                               "FROM Service_Ticket FULL OUTER JOIN Customer ON Service_Ticket.CustomerID = Customer.CustomerID " +
                               "FULL OUTER JOIN Employee ON Service_Ticket.empID = Employee.empID " +
-                              "WHERE concat(Customer.lastname, ', ', Customer.firstname) LIKE '%" + search + "%';";
+                              "WHERE concat(Customer.lastname, ', ', Customer.firstname) LIKE @Search";
 
             SqlConnection sqlConnect = new SqlConnection(ConfigurationManager.ConnectionStrings["Lab2"].ConnectionString);
 
             SqlDataAdapter sqlAdapter = new SqlDataAdapter(sqlQuery, sqlConnect);
+            sqlAdapter.SelectCommand.Parameters.AddWithValue("@Search", "%" + search + "%");
 
             //Display service ticket details
             DataTable dtForGridView = new DataTable();

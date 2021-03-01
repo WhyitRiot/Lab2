@@ -73,6 +73,35 @@
                     </asp:TableCell>
                 </asp:TableRow>
 
+                <asp:TableRow>
+
+                 <asp:TableCell>
+                        <asp:Label ID="lblCity" runat="server" Text="City: "></asp:Label>
+                    </asp:TableCell>
+                    <asp:TableCell>
+                        <asp:TextBox ID="txtCity" runat="server"></asp:TextBox>
+                    </asp:TableCell>
+                </asp:TableRow>
+                <asp:TableRow>
+                 <asp:TableCell>
+                        <asp:Label ID="lblState" runat="server" Text="State: "></asp:Label>
+                    </asp:TableCell>
+                    <asp:TableCell>
+                        <asp:TextBox ID="txtstate" runat="server"></asp:TextBox>
+                    </asp:TableCell>
+                </asp:TableRow>
+                <asp:TableRow>
+                 <asp:TableCell>
+                        <asp:Label ID="lblZipCode" runat="server" Text="Zip Code: "></asp:Label>
+                    </asp:TableCell>
+                    <asp:TableCell>
+                        <asp:TextBox ID="txtZipCode" runat="server"></asp:TextBox>
+                    </asp:TableCell>
+                </asp:TableRow>
+
+
+
+
                  <asp:TableRow>
                     <asp:TableCell>
                         <asp:Label ID="lblPhone" runat="server" Text="Phone Number"></asp:Label>
@@ -83,6 +112,8 @@
                 </asp:TableRow>
              <asp:TableRow>
                  <asp:TableCell>
+
+
 
                  </asp:TableCell>
                  <asp:TableCell>

@@ -33,11 +33,9 @@ namespace Lab2
         {
             HttpUtility.HtmlEncode(txtboxDestinationAddress.Text);
             HttpUtility.HtmlEncode(txtboxOriginAddress.Text);
-            HttpUtility.HtmlEncode(txtDestination.Text);
             HttpUtility.HtmlEncode(txtNoteBody.Text);
             HttpUtility.HtmlEncode(txtNoteTitle.Text);
-            HttpUtility.HtmlEncode(txtOrigin.Text);
-            HttpUtility.HtmlEncode(txtTicketStatus.Text);
+
 
 
             if (ddlWorkflowCustomer.SelectedValue.Equals("<--Select-->") || ddlWorkflowEmp.SelectedValue.Equals("<--Select-->"))
@@ -55,11 +53,8 @@ namespace Lab2
             {
                 HttpUtility.HtmlEncode(txtboxDestinationAddress.Text);
                 HttpUtility.HtmlEncode(txtboxOriginAddress.Text);
-                HttpUtility.HtmlEncode(txtDestination.Text);
                 HttpUtility.HtmlEncode(txtNoteBody.Text);
                 HttpUtility.HtmlEncode(txtNoteTitle.Text);
-                HttpUtility.HtmlEncode(txtOrigin.Text);
-                HttpUtility.HtmlEncode(txtTicketStatus.Text);
 
                 lblEmptyEmp.Text = "";
                 lblEmptyCust.Text = "";

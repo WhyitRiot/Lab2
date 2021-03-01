@@ -12,15 +12,15 @@ namespace Lab2
         protected void Page_Load(object sender, EventArgs e)
         {
 
-
+        }
         protected void btnSaveChanges_Click(object sender, EventArgs e)
         {
-            HttpUtility.HtmlEncode(txtCustomer.Text);
-            HttpUtility.HtmlEncode(txtEmployee.Text);
-            HttpUtility.HtmlEncode(txtCustomer.Text);
-            HttpUtility.HtmlEncode(txtService.Text);
-            HttpUtility.HtmlEncode(txtServiceTicketID.Text);
-            HttpUtility.HtmlEncode(txtTicketStatus.Text);
+            //HttpUtility.HtmlEncode(txtCustomer.Text);
+            //HttpUtility.HtmlEncode(txtEmployee.Text);
+            //HttpUtility.HtmlEncode(txtCustomer.Text);
+            //HttpUtility.HtmlEncode(txtService.Text);
+            //HttpUtility.HtmlEncode(txtServiceTicketID.Text);
+            //HttpUtility.HtmlEncode(txtTicketStatus.Text);
         }
     }
 }

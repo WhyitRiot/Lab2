@@ -10,6 +10,7 @@
 <body>
     <form id="form1" runat="server">
         <div>
+            <asp:Label runat="server" Text="Welcome to the employee login."></asp:Label>
             <asp:Table ID="tblLogin" runat="server">
                 <asp:TableRow>
                     <asp:TableCell>
@@ -33,6 +34,9 @@
                     </asp:TableCell>
                     <asp:TableCell>
                         <asp:Label ID="lblStatus" runat="server" Text=""></asp:Label>
+                    </asp:TableCell>
+                    <asp:TableCell>
+                        <asp:HyperLink ID="lnkCustomerLogin" runat="server" NavigateUrl="~/Customer Portal Login.aspx">Customer Login</asp:HyperLink>
                     </asp:TableCell>
                 </asp:TableRow>
             </asp:Table>

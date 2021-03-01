@@ -12,6 +12,11 @@
             <asp:Table ID="tblLogin" runat="server">
                 <asp:TableRow>
                     <asp:TableCell>
+                        <asp:Label ID="lblHeader" runat="server" Text="Welcome to Customer Login"></asp:Label>
+                    </asp:TableCell>
+                </asp:TableRow>
+                <asp:TableRow>
+                    <asp:TableCell>
                         <asp:Label ID="lblUsername" runat="server" Text="Username: "></asp:Label>
                     </asp:TableCell>
                     <asp:TableCell>
@@ -33,6 +38,9 @@
                     <asp:TableCell>
                         <asp:Label ID="lblStatus" runat="server" Text=""></asp:Label>
                         <asp:HyperLink ID="lnkRegister" runat="server" NavigateUrl="~/Customer Portal Register.aspx">Register</asp:HyperLink>
+                    </asp:TableCell>
+                    <asp:TableCell>
+                        <asp:HyperLink ID="lnkEmployeeLogin" runat="server" NavigateUrl="~/Login.aspx">Employee Login</asp:HyperLink>
                     </asp:TableCell>
                 </asp:TableRow>
             </asp:Table>

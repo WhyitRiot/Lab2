@@ -23,6 +23,9 @@
                     <asp:Label ID="lblServiceType" runat="server" Text="Service Type: "></asp:Label> 
                     <asp:TextBox ID="TextBoxService" runat="server"></asp:TextBox> <br />
             </asp:TableCell>
+              <asp:TableCell>
+                  <asp:Button ID="btnLogout" runat="server" Text="Logout" OnClick="btn_Logout" />
+              </asp:TableCell>
               </asp:TableRow>
           <asp:TableRow>
               <asp:TableCell>
@@ -42,6 +45,11 @@
           <asp:TableRow>
               <asp:TableCell>
                   <asp:Button ID="btnSubmitRequest" runat="server" Text="Submit Request" OnClick="btnSubmitRequest_Click" />
+              </asp:TableCell>
+          </asp:TableRow>
+          <asp:TableRow>
+              <asp:TableCell>
+                  <asp:Label ID="lblStatus" runat="server" Text=""></asp:Label>
               </asp:TableCell>
           </asp:TableRow>
       </asp:Table>

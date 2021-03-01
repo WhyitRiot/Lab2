@@ -26,7 +26,7 @@
     <form id="form1" runat="server">
         <div>
             <fieldset style="height: 370px">
-    <legend>Service Request</legend>
+    <legend>Register</legend>
     
             <asp:Panel ID="Panel1" runat="server" BackColor="Blue" Height="35px" Width="1500px" ></asp:Panel>
             <asp:Table CssClass="auto-style1" runat="server">

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Web;
@@ -17,19 +19,34 @@ namespace Lab2
                 lblLoginSuccess.ForeColor = Color.Green;
                 lblLoginSuccess.Text = "Login successful. Welcome to the PlaceHolder Moving Co Employee Website";
                 lblLoginSuccess.Font.Bold = true;
-                if (!(Session["s1"] == null))
-                {
-                    LabelNotification.Text = Session["s1"].ToString();
-                    LabelNotification.Text = Session["s2"].ToString();
-                    LabelNotification.Text = Session["s3"].ToString();
-                }
 
+                if (grdNotifictions.Rows.Count == 0)
+                {
+                    pnlNotifications.Visible = false;
+                }
+                else
+                {
+                    pnlNotifications.Visible = true;
+                }
 
             }
             else
             {
                 Response.Redirect("~/Login.aspx");
             }
+        }
+
+        protected void btn_Clear(object sender, EventArgs e)
+        {
+            String sqlQuery = "DELETE FROM Notifications";
+            String connectionString = ConfigurationManager.ConnectionStrings["Lab2"].ConnectionString;
+            SqlConnection sqlConnect = new SqlConnection(connectionString);
+            SqlCommand sqlCommand = new SqlCommand(sqlQuery, sqlConnect);
+
+            sqlConnect.Open();
+            sqlCommand.ExecuteNonQuery();
+            sqlConnect.Close();
+            Response.Redirect("~/Home.aspx");
         }
     }
 }

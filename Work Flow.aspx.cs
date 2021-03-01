@@ -20,7 +20,14 @@ namespace Lab2
         {
             if (Session["UserName"] != null)
             {
-
+                if (grdNotifictions.Rows.Count == 0)
+                {
+                    pnlNotifications.Visible = false;
+                }
+                else
+                {
+                    pnlNotifications.Visible = true;
+                }
             }
             else
             {
@@ -158,6 +165,18 @@ namespace Lab2
                 grdTicketHistory.DataBind();
             }
         }
+        protected void btn_Clear(object sender, EventArgs e)
+        {
+            String sqlQuery = "DELETE FROM Notifications";
+            String connectionString = ConfigurationManager.ConnectionStrings["Lab2"].ConnectionString;
+            SqlConnection sqlConnect = new SqlConnection(connectionString);
+            SqlCommand sqlCommand = new SqlCommand(sqlQuery, sqlConnect);
+
+            sqlConnect.Open();
+            sqlCommand.ExecuteNonQuery();
+            sqlConnect.Close();
+            Response.Redirect("~/Home.aspx");
+        }
 
         //Function to edit service ticket
         //protected void btnEditTicket(object sender, EventArgs e)
@@ -239,7 +258,7 @@ namespace Lab2
         //    //Sql update strings
         //    sqlUpdateString = "UPDATE Service_Ticket SET empID = " + employee + ", CustomerID = " + customer + ", TicketStatus = " + "'" + ticketStatus + "'" + " WHERE ServiceTicketID = " + serviceTicketID;
         //    sqlAddressUpdateString = "UPDATE \"Move\" SET originAddress = " + "'" + originAddress + "'" + ", destAddress = " + "'" + destAddress + "'" + " WHERE ServiceID = " + serviceID;
-            
+
 
         //    SqlConnection sqlConnect = new SqlConnection(conString);
         //    sqlConnect.Open();
@@ -275,7 +294,7 @@ namespace Lab2
         //    }
 
         //    sqlConnect.Close();
-            //pnEdit.Visible = false;
+        //pnEdit.Visible = false;
 
         //}
 

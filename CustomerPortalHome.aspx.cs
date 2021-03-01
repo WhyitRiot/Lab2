@@ -36,7 +36,8 @@ namespace Lab2
 
         protected void createNotification(String service, String date, String description)
         {
-            String userName = Session["UserName"].ToString();
+            //String userName = Session["UserName"].ToString();
+            String userName = getCustomerName();
             String sqlQuery = "INSERT INTO Notifications (NotificationID, Customer, ServiceNeeded, DateNeeded, NoteDescription) VALUES (@NotificationID, @Customer, @ServiceNeeded, @DateNeeded, @NoteDescription)";
            
             String connectionString = ConfigurationManager.ConnectionStrings["Lab2"].ConnectionString;
@@ -72,12 +73,30 @@ namespace Lab2
             }
             else
             {
-                noteID = (int)reader["TicketHistory"] + 1;
+                noteID = (int)reader["NoteID"] + 1;
             }
             reader.Close();
             sqlConnect.Close();
 
             return noteID;
+        }
+
+        protected String getCustomerName()
+        {
+            String noteQuery = "SELECT concat(LastName, ', ', FirstName) as CustomerName from Person WHERE Username = @Username";
+
+            String connectionString = ConfigurationManager.ConnectionStrings["AUTH"].ConnectionString;
+            SqlConnection sqlConnect = new SqlConnection(connectionString);
+            sqlConnect.Open();
+            SqlCommand sqlCommand = new SqlCommand(noteQuery, sqlConnect);
+            sqlCommand.Parameters.AddWithValue("@Username", Session["UserName"].ToString());
+            SqlDataReader reader = sqlCommand.ExecuteReader();
+            reader.Read();
+            String customerName = reader["CustomerName"].ToString();
+            reader.Close();
+            sqlConnect.Close();
+
+            return customerName;
         }
     }
 }

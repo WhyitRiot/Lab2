@@ -17,12 +17,19 @@ namespace Lab2
         //SqlDataReader mdr;
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["UserName"] != null)
+            {
 
+            }
+            else
+            {
+                Response.Redirect("~/Login.aspx");
+            }
         }
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
-           String search = txtCustomerFirstName.Text;
+           String search = txtCustomerName.Text;
            
 
 

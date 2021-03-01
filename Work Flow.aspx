@@ -5,6 +5,9 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div>
         <%--Labels and cooresponding text boxes and dropdownlists to create a Service_Ticket--%>
+
+        <fieldset ID="fldNotifications" >        <asp:Panel ID="pnlNotifications" runat="server" >     <legend>Notification Alert!</legend>    <asp:GridView ID="grdNotifictions" runat="server" DataSourceID="sqlSourceNotifications" AppendDataBoundItems="true"></asp:GridView><%--    <asp:Button ID="btnAdd" runat="server" Text="Go To Workflow" OnClick="btnAdd"/>--%>    <asp:Button ID="btnClear" runat="server" Text="Clear Notifications" OnClick="btn_Clear" CausesValidation="false" />    </asp:Panel>
+        </fieldset>
             <asp:Label ID="lblNewWorkflow" runat="server" Text="Create new workflow."></asp:Label>
             <br />
             <asp:Label ID="lblDescriptionCustomer" runat="server" Text="Select Customer: "></asp:Label>
@@ -128,6 +131,10 @@
                  ConnectionString="<%$ ConnectionStrings:Lab2 %>"
                  SelectCommand="Select concat(ServiceTicketID, ', ', Customer.LastName, ', ', Customer.FirstName) as Ticket 
                                 from Service_Ticket INNER JOIN Customer ON Customer.CustomerID = Service_Ticket.CustomerID;">
+            </asp:SqlDataSource>
+            <asp:SqlDataSource ID="sqlSourceNotifications" runat="server"
+                 ConnectionString="<%$ ConnectionStrings:Lab2 %>"
+                 SelectCommand="Select Customer, ServiceNeeded, DateNeeded, NoteDescription from Notifications;">
             </asp:SqlDataSource>
 <%--            <asp:SqlDataSource ID="dataWKFLTicketHistory" runat="server"
                  ConnectionString="<%$ ConnectionStrings:Lab2 %>"

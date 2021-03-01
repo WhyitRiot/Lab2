@@ -15,6 +15,15 @@ namespace Lab2
     {
 
         /// <summary>
+        /// lblCustomerName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCustomerName;
+
+        /// <summary>
         /// lblCustomerSearch control.
         /// </summary>
         /// <remarks>
@@ -24,22 +33,13 @@ namespace Lab2
         protected global::System.Web.UI.WebControls.Label lblCustomerSearch;
 
         /// <summary>
-        /// lblCustomerFirstName control.
+        /// txtCustomerName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCustomerFirstName;
-
-        /// <summary>
-        /// txtCustomerFirstName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCustomerFirstName;
+        protected global::System.Web.UI.WebControls.TextBox txtCustomerName;
 
         /// <summary>
         /// btnSearch control.

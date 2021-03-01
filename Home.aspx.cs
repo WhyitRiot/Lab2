@@ -48,5 +48,10 @@ namespace Lab2
             sqlConnect.Close();
             Response.Redirect("~/Home.aspx");
         }
+
+        //protected void btnAdd(object sender, EventArgs e)
+        //{
+
+        //}
     }
 }

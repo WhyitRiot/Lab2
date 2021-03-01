@@ -5,15 +5,15 @@
     <asp:Table runat="server">
         <asp:TableRow>
             <asp:TableCell>
-                <asp:Label ID="lblCustomerSearch" runat="server" Text="Search for Customer Below"></asp:Label>
+                <asp:Label ID="lblCustomerName" runat="server" Text="Search for Customer Below"></asp:Label>
             </asp:TableCell>
         </asp:TableRow>
         <asp:TableRow>
             <asp:TableCell>
-                <asp:Label ID="lblCustomerFirstName" runat="server" Text="Enter First Name: "></asp:Label>
+                <asp:Label ID="lblCustomerSearch" runat="server" Text="Enter First or Last Name: "></asp:Label>
             </asp:TableCell>
             <asp:TableCell>
-                <asp:TextBox ID="txtCustomerFirstName" runat="server"></asp:TextBox>
+                <asp:TextBox ID="txtCustomerName" runat="server"></asp:TextBox>
             </asp:TableCell>
             </asp:TableRow>
         <asp:TableRow>

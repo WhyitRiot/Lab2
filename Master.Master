@@ -32,7 +32,10 @@
                         <asp:HyperLink ID="lnkCurrentCustomers" runat="server" NavigateUrl="~/Current Customers.aspx">Current Customers</asp:HyperLink>
                     </asp:TableCell>
                     <asp:TableCell>
-                        <asp:Button ID="btnLogout" runat="server" Text="Log Out ->" OnClick ="fnLogout"/>
+                        <asp:HyperLink ID="lnkCustomerSearch" runat="server" NavigateUrl="~/Customer Search.aspx">Customer Search</asp:HyperLink>
+                    </asp:TableCell>
+                    <asp:TableCell>
+                        <asp:Button ID="btnLogout" runat="server" Text="Log Out ->" OnClick ="fnLogout" CausesValidation="false"/>
                     </asp:TableCell>
                 </asp:TableRow>
             </asp:Table>

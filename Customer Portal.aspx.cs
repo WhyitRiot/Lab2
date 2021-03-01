@@ -43,6 +43,10 @@ namespace Lab2
             String userPhone = txtPhone.Text;
             String userName = txtUsername.Text;
             String userEmail = txtEmailID.Text;
+            String userZipCode = txtZipCode.Text;
+            String userState = txtstate.Text;
+            String userCity= txtCity.Text;
+
             String userPass = PasswordHash.HashPassword(txtPassword.Text);
 
 

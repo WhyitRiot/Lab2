@@ -17,6 +17,14 @@ namespace Lab2
                 lblLoginSuccess.ForeColor = Color.Green;
                 lblLoginSuccess.Text = "Login successful. Welcome to the PlaceHolder Moving Co Employee Website";
                 lblLoginSuccess.Font.Bold = true;
+                if (!(Session["s1"] == null))
+                {
+                    LabelNotification.Text = Session["s1"].ToString();
+                    LabelNotification.Text = Session["s2"].ToString();
+                    LabelNotification.Text = Session["s3"].ToString();
+                }
+
+
             }
             else
             {

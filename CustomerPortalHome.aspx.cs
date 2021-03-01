@@ -11,7 +11,14 @@ namespace Lab2
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["UserName"] != null)
+            {
 
+            }
+            else
+            {
+                Response.Redirect("~/Customer Portal Login.aspx");
+            }
         }
         protected void btnSubmitRequest_Click(object sender, EventArgs e)
         {

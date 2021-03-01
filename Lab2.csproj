@@ -70,7 +70,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Customer Portal.aspx" />
+    <Content Include="Customer Portal Login.aspx" />
+    <Content Include="Customer Portal Register.aspx" />
     <Content Include="CustomerPortalHome.aspx" />
     <Content Include="Customer Search.aspx" />
     <Content Include="Edit Work Flow.aspx" />
@@ -90,12 +91,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Auction.cs" />
-    <Compile Include="Customer Portal.aspx.cs">
-      <DependentUpon>Customer Portal.aspx</DependentUpon>
+    <Compile Include="Customer Portal Login.aspx.cs">
+      <DependentUpon>Customer Portal Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Customer Portal.aspx.designer.cs">
-      <DependentUpon>Customer Portal.aspx</DependentUpon>
+    <Compile Include="Customer Portal Login.aspx.designer.cs">
+      <DependentUpon>Customer Portal Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Customer Portal Register.aspx.cs">
+      <DependentUpon>Customer Portal Register.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Customer Portal Register.aspx.designer.cs">
+      <DependentUpon>Customer Portal Register.aspx</DependentUpon>
     </Compile>
     <Compile Include="Customer Search.aspx.cs">
       <DependentUpon>Customer Search.aspx</DependentUpon>

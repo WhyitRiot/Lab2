@@ -15,7 +15,7 @@ namespace Lab2
             public const int SaltIndex = 1;
             public const int Pbkdf2Index = 2;
 
-        public static String HashPassword(String password)
+        public static string HashPassword(string password)
         {
             var cryptoProvider = new RNGCryptoServiceProvider();
             byte[] salt = new byte[SaltByteSize];
@@ -25,7 +25,7 @@ namespace Lab2
             return Pbkdf2Iterations + ":" + Convert.ToBase64String(salt) + ":" + Convert.ToBase64String(hash);
         }
 
-        public static bool ValidatePassword(String password, String correctHash)
+        public static bool ValidatePassword(string password, string correctHash)
         {
             char[] delimiter = { ':' };
             var split = correctHash.Split(delimiter);
@@ -37,7 +37,7 @@ namespace Lab2
             return SlowEquals(hash, testHash);
         }
 
-        private static byte[] GetPbkdf2Bytes(String password, byte[] salt, int iterations, int outputBytes)
+        private static byte[] GetPbkdf2Bytes(string password, byte[] salt, int iterations, int outputBytes)
         {
             var pbkdf2 = new Rfc2898DeriveBytes(password, salt);
             pbkdf2.IterationCount = iterations;

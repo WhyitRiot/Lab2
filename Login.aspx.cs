@@ -35,18 +35,22 @@ namespace Lab2
             LoginCommand.Connection = dbConnection;
             LoginCommand.CommandType = System.Data.CommandType.StoredProcedure;
             LoginCommand.CommandText = "JeremyEzellLab3";
-            LoginCommand.Parameters.AddWithValue("@Username", txtPassword.ToString());
-            LoginCommand.Parameters.AddWithValue("@PasswordHash", txtPassword.ToString());
+            LoginCommand.Parameters.AddWithValue("@Username", txtUsername.Text);
+
             dbConnection.Open();
             SqlDataReader loginResults = LoginCommand.ExecuteReader();
-
-            String username = "admin";
-            String password = "password";
-
-            if (txtUsername.Text == username && txtPassword.Text == password)
+            if (loginResults.HasRows)
             {
-                Session["UserName"] = txtUsername.Text;
-                Response.Redirect("~/Home.aspx");
+                while (loginResults.Read())
+                {
+                    string storedHash = loginResults["PasswordHash"].ToString();
+
+                    if (PasswordHash.ValidatePassword(txtPassword.Text, storedHash))
+                    {
+                        Session["UserName"] = txtUsername.Text;
+                        Response.Redirect("~/Home.aspx");
+                    }
+                }
             }
             else
             {

@@ -7,6 +7,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data.SqlClient;
+
 
 //Created by Wyatt T. Putnam
 
@@ -29,6 +31,17 @@ namespace Lab2
         //Function to add a Service_Ticket and a Ticket History to the DB
         protected void btnAddWorkFlow(object sender, EventArgs e)
         {
+           
+            HttpUtility.HtmlEncode(txtboxDestinationAddress.Text);
+            HttpUtility.HtmlEncode(txtboxOriginAddress.Text);
+            HttpUtility.HtmlEncode(txtDestination.Text);
+            HttpUtility.HtmlEncode(txtNoteBody.Text);
+            HttpUtility.HtmlEncode(txtNoteTitle.Text);
+            HttpUtility.HtmlEncode(txtOrigin.Text);
+            HttpUtility.HtmlEncode(txtTicketStatus.Text);
+
+
+
             //Insert statements declared as String values.
             String newAuction = "INSERT INTO Auction (ServiceID, empID) VALUES ";
             String newMove = "INSERT INTO \"Move\" (ServiceID, empID, originAddress, destAddress) VALUES ";
@@ -260,6 +273,14 @@ namespace Lab2
         protected void btnEditTicket(object sender, EventArgs e)
         {
 
+            HttpUtility.HtmlEncode(txtboxDestinationAddress.Text);
+            HttpUtility.HtmlEncode(txtboxOriginAddress.Text);
+            HttpUtility.HtmlEncode(txtDestination.Text);
+            HttpUtility.HtmlEncode(txtNoteBody.Text);
+            HttpUtility.HtmlEncode(txtNoteTitle.Text);
+            HttpUtility.HtmlEncode(txtOrigin.Text);
+            HttpUtility.HtmlEncode(txtTicketStatus.Text);
+
             pnEdit.Visible = true;
 
             String selectedTicket = ddlServiceTickets.SelectedValue.Substring(0, 1);
@@ -319,6 +340,14 @@ namespace Lab2
         //Function to save changes made about selected service ticket
         protected void btnSaveChanges_Click(object sender, EventArgs e)
         {
+            HttpUtility.HtmlEncode(txtboxDestinationAddress.Text);
+            HttpUtility.HtmlEncode(txtboxOriginAddress.Text);
+            HttpUtility.HtmlEncode(txtDestination.Text);
+            HttpUtility.HtmlEncode(txtNoteBody.Text);
+            HttpUtility.HtmlEncode(txtNoteTitle.Text);
+            HttpUtility.HtmlEncode(txtOrigin.Text);
+            HttpUtility.HtmlEncode(txtTicketStatus.Text);
+
             String newHistory = "INSERT INTO TicketHistory (TicketHistoryID, TicketChangeDate, ServiceTicketID, empID) VALUES ";
 
             String serviceTicketID = TicketID.Text;
@@ -379,6 +408,15 @@ namespace Lab2
         //WIP button cancels edit and hides edit textboxes and buttons
         protected void btnCancelEdit(object sender, EventArgs e)
         {
+            HttpUtility.HtmlEncode(txtboxDestinationAddress.Text);
+            HttpUtility.HtmlEncode(txtboxOriginAddress.Text);
+            HttpUtility.HtmlEncode(txtDestination.Text);
+            HttpUtility.HtmlEncode(txtNoteBody.Text);
+            HttpUtility.HtmlEncode(txtNoteTitle.Text);
+            HttpUtility.HtmlEncode(txtOrigin.Text);
+            HttpUtility.HtmlEncode(txtTicketStatus.Text);
+
+
             txtTicketStatus.Text = "";
             txtOrigin.Text = "";
             txtDestination.Text = "";

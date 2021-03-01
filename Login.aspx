@@ -6,7 +6,7 @@
 <head runat="server">
     <title>Placeholder Moving Co Login</title>
 </head>
-   <%-- Created by Wyatt T. Putnam--%>
+   <%-- Created by Wyatt T. Putnam, Cole Schweikert, Shaima Sorchi--%>
 <body>
     <form id="form1" runat="server">
         <div>

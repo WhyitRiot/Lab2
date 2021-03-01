@@ -70,6 +70,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Customer Search.aspx" />
     <Content Include="Master.Master" />
     <None Include="Scripts\jquery-3.5.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.5.1.js" />
@@ -86,6 +87,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Auction.cs" />
+    <Compile Include="Customer Search.aspx.cs">
+      <DependentUpon>Customer Search.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Customer Search.aspx.designer.cs">
+      <DependentUpon>Customer Search.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Customer.cs" />
     <Compile Include="Employee.cs" />
     <Compile Include="Master.Master.cs">

@@ -285,6 +285,42 @@ namespace Lab2
         protected global::System.Web.UI.WebControls.RequiredFieldValidator reqtxtEmail;
 
         /// <summary>
+        /// lblMovingCalendar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblMovingCalendar;
+
+        /// <summary>
+        /// MovingCalendar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Calendar MovingCalendar;
+
+        /// <summary>
+        /// lblAuction control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblAuction;
+
+        /// <summary>
+        /// AuctionCalendar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Calendar AuctionCalendar;
+
+        /// <summary>
         /// btnAddCustomer control.
         /// </summary>
         /// <remarks>

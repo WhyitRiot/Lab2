@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-// Created by Wyatt T. Putnam
+// Created by Wyatt T. Putnam, Cole Schweikert, Shaima Sorchi
 namespace Lab2
 {
     public partial class WebForm8 : System.Web.UI.Page

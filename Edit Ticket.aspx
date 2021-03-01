@@ -32,7 +32,7 @@
             <br />
             <asp:TextBox ID="txtEmployee" runat="server"></asp:TextBox>
 
-            <asp:Button ID="btnSaveChanges" runat="server" Text="Save Changes" />
+            <asp:Button ID="btnSaveChanges" runat="server" Text="Save Changes" OnClick="btnSaveChanges_Click" />
 
         </div>
     </form>

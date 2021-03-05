@@ -6,7 +6,7 @@
     <div>
         <%--Labels and cooresponding text boxes and dropdownlists to create a Service_Ticket--%>
 
-        <fieldset ID="fldNotifications" >        <asp:Panel ID="pnlNotifications" runat="server" >     <legend>Notification Alert!</legend>    <asp:GridView ID="grdNotifictions" runat="server" DataSourceID="sqlSourceNotifications" AppendDataBoundItems="true"></asp:GridView><%--    <asp:Button ID="btnAdd" runat="server" Text="Go To Workflow" OnClick="btnAdd"/>--%>    <asp:Button ID="btnClear" runat="server" Text="Clear Notifications" OnClick="btn_Clear" CausesValidation="false" />    </asp:Panel>
+        <fieldset ID="fldNotifications" >        <asp:Panel ID="pnlNotifications" runat="server" >     <legend>Notification Alert!</legend>    <asp:GridView ID="grdNotifictions" runat="server" DataSourceID="sqlSourceNotifications" AppendDataBoundItems="true"></asp:GridView><%--    <asp:Button ID="btnAdd" runat="server" Text="Go To Workflow" OnClick="btnAdd"/>--%>    <asp:Button ID="btnClearNotifications" runat="server" Text="Clear Notifications" OnClick="btn_ClearNotifications" CausesValidation="false" />    </asp:Panel>
         </fieldset>
             <asp:Label ID="lblNewWorkflow" runat="server" Text="Create new workflow."></asp:Label>
             <br />
@@ -46,7 +46,8 @@
             <br />
         <%--Button takes all values in dropdownlists and text boxes and creates a Service ticket entry--%>
             <asp:Button ID="butnAddWorkFlow" runat="server" Text="Add Workflow" OnClick="btnAddWorkFlow"/>
-
+            <asp:Button ID="btnPopulateData" runat="server" Text="Populate" OnClick="btn_Populate" CausesValidation="false" />
+            <asp:Button ID="btnClearData" runat="server" Text="Clear" OnClick="btn_Clear" CausesValidation="false"/>
             <br /> <br />
 
         <%--Select an existing service ticket and view details--%>
@@ -119,17 +120,17 @@
 
             <asp:SqlDataSource ID="dataWKFLCustomer" runat="server"
                  ConnectionString="<%$ ConnectionStrings:Lab2 %>"
-                 SelectCommand="Select concat(CustomerID, ', ', lastname, ', ', firstname) as Customer from Customer;">
+                 SelectCommand="Select concat(lastname, ', ', firstname) as Customer from Customer;">
             </asp:SqlDataSource>
 
             <asp:SqlDataSource ID="dataWKFLEmp" runat="server"
                  ConnectionString="<%$ ConnectionStrings:Lab2 %>"
-                 SelectCommand="Select concat(empID, ', ', lastname, ', ', firstname) as Employee from Employee;">
+                 SelectCommand="Select concat(lastname, ', ', firstname) as Employee from Employee;">
             </asp:SqlDataSource>
 
             <asp:SqlDataSource ID="dataWKFLServiceTickets" runat="server"
                  ConnectionString="<%$ ConnectionStrings:Lab2 %>"
-                 SelectCommand="Select concat(ServiceTicketID, ', ', Customer.LastName, ', ', Customer.FirstName) as Ticket 
+                 SelectCommand="Select concat(TicketOpenDate, ', ', Customer.LastName, ', ', Customer.FirstName) as Ticket 
                                 from Service_Ticket INNER JOIN Customer ON Customer.CustomerID = Service_Ticket.CustomerID;">
             </asp:SqlDataSource>
             <asp:SqlDataSource ID="sqlSourceNotifications" runat="server"

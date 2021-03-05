@@ -33,13 +33,13 @@ namespace Lab2
         protected global::System.Web.UI.WebControls.GridView grdNotifictions;
 
         /// <summary>
-        /// btnClear control.
+        /// btnClearNotifications control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnClear;
+        protected global::System.Web.UI.WebControls.Button btnClearNotifications;
 
         /// <summary>
         /// lblNewWorkflow control.
@@ -229,6 +229,24 @@ namespace Lab2
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button butnAddWorkFlow;
+
+        /// <summary>
+        /// btnPopulateData control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnPopulateData;
+
+        /// <summary>
+        /// btnClearData control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnClearData;
 
         /// <summary>
         /// lblWorkflow control.

@@ -52,7 +52,7 @@
                         </asp:Label>
                     </asp:TableCell>
                     <asp:TableCell>
-                        <asp:TextBox ID="txtUsername" runat="server" required="true"></asp:TextBox>
+                        <asp:TextBox ID="txtUsername" runat="server"></asp:TextBox>
                     </asp:TableCell>
                 </asp:TableRow>
                 <asp:TableRow>
@@ -134,7 +134,9 @@
                 </asp:TableRow>
                 <asp:TableRow>
                     <asp:TableCell>
-                        <asp:HyperLink ID="lnkLogin" runat="server" NavigateUrl="~/Customer Portal Login.aspx">Login</asp:HyperLink>
+                        <asp:Button ID="btnPopulate" runat="server" Text="Populate" OnClick="btn_Populate" CausesValidation="false"/>
+                        <asp:Button ID="btnClear" runat="server" Text="Clear" OnClick="btn_Clear" CausesValidation="false"/>
+                        <asp:HyperLink ID="lnkLogin" runat="server" NavigateUrl="~/Customer Portal Login.aspx">Back to Login</asp:HyperLink>
                     </asp:TableCell>
                 </asp:TableRow>
              <asp:TableRow>

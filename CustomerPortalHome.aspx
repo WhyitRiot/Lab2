@@ -21,7 +21,13 @@
               
               <asp:TableCell>
                     <asp:Label ID="lblServiceType" runat="server" Text="Service Type: "></asp:Label> 
-                    <asp:TextBox ID="TextBoxService" runat="server"></asp:TextBox> <br />
+                    <asp:DropDownList ID="ddlServiceType" runat="server">
+                        <asp:ListItem Text="Move">
+                        </asp:ListItem>
+                        <asp:ListItem Text="Auction">
+                        </asp:ListItem>
+                    </asp:DropDownList>
+<%--                    <asp:TextBox ID="TextBoxService" runat="server"></asp:TextBox>--%> <br />
             </asp:TableCell>
               <asp:TableCell>
                   <asp:Button ID="btnLogout" runat="server" Text="Logout" OnClick="btn_Logout" />
@@ -45,6 +51,8 @@
           <asp:TableRow>
               <asp:TableCell>
                   <asp:Button ID="btnSubmitRequest" runat="server" Text="Submit Request" OnClick="btnSubmitRequest_Click" />
+                  <asp:Button ID="btnPopulate" runat="server" Text="Populate" OnClick="btn_Populate" CausesValidation="false"/>
+                  <asp:Button ID="btnClear" runat="server" Text="Clear" OnClick="btn_Clear" CausesValidation="false"/>
               </asp:TableCell>
           </asp:TableRow>
           <asp:TableRow>

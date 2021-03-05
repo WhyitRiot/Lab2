@@ -84,7 +84,7 @@
             <br />
             <asp:DropDownList ID="ddlAuction" runat="server"
                 DataSourceID="dataAuctionSQL"
-                DataValueField="AuctionID"
+                DataValueField="DateOfSale"
                 AppendDataBoundItems="true">
                 <asp:ListItem Text="<--Select-->"></asp:ListItem>
             </asp:DropDownList>
@@ -101,23 +101,23 @@
 
             <asp:SqlDataSource ID="dataWKFLCustomer" runat="server"
                  ConnectionString="<%$ ConnectionStrings:Lab2 %>"
-                 SelectCommand="Select concat(CustomerID, ', ', lastname, ', ', firstname) as Customer from Customer;">
+                 SelectCommand="Select concat(lastname, ', ', firstname) as Customer from Customer;">
             </asp:SqlDataSource>
 
             <asp:SqlDataSource ID="dataWKFLEmp" runat="server"
                  ConnectionString="<%$ ConnectionStrings:Lab2 %>"
-                 SelectCommand="Select concat(empID, ', ', lastname, ', ', firstname) as Employee from Employee;">
+                 SelectCommand="Select concat(lastname, ', ', firstname) as Employee from Employee;">
             </asp:SqlDataSource>
 
             <asp:SqlDataSource ID="dataWKFLServiceTickets" runat="server"
                  ConnectionString="<%$ ConnectionStrings:Lab2 %>"
-                 SelectCommand="Select concat(ServiceTicketID, ', ', Customer.LastName, ', ', Customer.FirstName) as Ticket 
+                 SelectCommand="Select concat(TicketOpenDate, ', ', Customer.LastName, ', ', Customer.FirstName) as Ticket 
                                 from Service_Ticket INNER JOIN Customer ON Customer.CustomerID = Service_Ticket.CustomerID;">
             </asp:SqlDataSource>
             
             <asp:SqlDataSource ID="dataAuctionSQL" runat="server"
                  ConnectionString="<%$ ConnectionStrings:Lab2 %>"
-                 SelectCommand="Select AuctionID from Auction">
+                 SelectCommand="Select DateOfSale from Auction">
             </asp:SqlDataSource>
 <%--            <asp:SqlDataSource ID="dataWKFLTicketHistory" runat="server"
                  ConnectionString="<%$ ConnectionStrings:Lab2 %>"

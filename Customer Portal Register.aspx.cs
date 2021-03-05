@@ -105,5 +105,34 @@ namespace Lab2
             sqlConnect.Close();
             return userID;
         }
+
+        protected void btn_Populate(object sender, EventArgs e)
+        {
+            txtFirstname.Text = "Tom";
+            txtLastname.Text = "Riddle";
+            txtUsername.Text = "VoldemortRulez";
+            txtEmailID.Text = "darkMagik@slytherin.mail";
+            txtPassword.Text = "horcrux";
+            txtConfirmPassword.Text = "horcrux";
+            txtStreet.Text = "666 Diagon Alley";
+            txtstate.Text = "England";
+            txtCity.Text = "London";
+            txtZipCode.Text = "6666";
+            txtPhone.Text = "000-000-0000";
+        }
+        protected void btn_Clear(object sender, EventArgs e)
+        {
+            txtFirstname.Text = "";
+            txtLastname.Text = "";
+            txtUsername.Text = "";
+            txtEmailID.Text = "";
+            txtPassword.Text = "";
+            txtConfirmPassword.Text = "";
+            txtStreet.Text = "";
+            txtstate.Text = "";
+            txtCity.Text = "";
+            txtZipCode.Text = "";
+            txtPhone.Text = "";
+        }
     }
 }

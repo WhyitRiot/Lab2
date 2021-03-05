@@ -73,7 +73,7 @@ namespace Lab2
                 SqlDataReader reader;
                 
                 //Get the CustomerID using the selected Customer
-                String sqlQuery = "SELECT CustomerID, concat(lastname, ', ', firstname) as CustomerID from Customer WHERE concat(lastname, ', ', firstname) = " + "'" + ddlWorkflowCustomer.SelectedValue.Substring(3) + "'";
+                String sqlQuery = "SELECT CustomerID, concat(lastname, ', ', firstname) as CustomerID from Customer WHERE concat(lastname, ', ', firstname) = " + "'" + ddlWorkflowCustomer.SelectedValue + "'";
                 SqlCommand sqlCommand = new SqlCommand(sqlQuery, sqlConnect);
                 reader = sqlCommand.ExecuteReader();
                 reader.Read();
@@ -102,7 +102,7 @@ namespace Lab2
                 //Create an Auction event if option is checked
                 if (chbxWorkflowAuction.Checked)
                 {
-                    addNewAuction(serviceID, empID);
+                    addNewAuction(serviceID, empID, DateTime.Now.ToString());
                    
                 }
 
@@ -135,13 +135,13 @@ namespace Lab2
                 grdSelectedServiceTicket.Visible = true;
                 grdTicketHistory.Visible = true;
                 String currentTicket = ddlServiceTickets.SelectedValue;
-                String ticketNumber = currentTicket.Substring(0, 1);
+                int ticketNumber = getSpecificServiceTicket(ddlServiceTickets.SelectedValue);
 
                 String sqlQuery = "SELECT ServiceTicketID, TicketStatus, TicketOpenDate, concat(Customer.lastname, ', ', Customer.firstname) as Customer, " +
                                   "ServiceID, Service_Ticket.empID, concat(Employee.lastname, ', ', Employee.firstname) as Employee " +
                                   "FROM Service_Ticket FULL OUTER JOIN Customer ON Service_Ticket.CustomerID = Customer.CustomerID " +
                                   "FULL OUTER JOIN Employee ON Service_Ticket.empID = Employee.empID " +
-                                  "WHERE concat(ServiceTicketID, ', ', Customer.lastname, ', ', Customer.firstname) = '" + currentTicket + "';";
+                                  "WHERE concat(TicketOpenDate, ', ', Customer.lastname, ', ', Customer.firstname) = '" + currentTicket + "';";
                 SqlConnection sqlConnect = new SqlConnection(ConfigurationManager.ConnectionStrings["Lab2"].ConnectionString);
 
                 SqlDataAdapter sqlAdapter = new SqlDataAdapter(sqlQuery, sqlConnect);
@@ -152,7 +152,7 @@ namespace Lab2
 
 
                 String sqlHistoryQuery = "SELECT TicketChangeDate, concat(Employee.lastname, ', ', Employee.firstname) as 'Attending Employee' from TicketHistory " +
-                                         "INNER JOIN Employee on TicketHistory.empID = Employee.empID WHERE ServiceTicketID = " + "'" + ticketNumber + "'";
+                                         "INNER JOIN Employee on TicketHistory.empID = Employee.empID WHERE ServiceTicketID = " + "'" + ticketNumber.ToString() + "'";
 
                 //Display ticket history of selected service ticket
                 DataTable dtforTicketHistory = new DataTable();
@@ -165,7 +165,7 @@ namespace Lab2
                 grdTicketHistory.DataBind();
             }
         }
-        protected void btn_Clear(object sender, EventArgs e)
+        protected void btn_ClearNotifications(object sender, EventArgs e)
         {
             String sqlQuery = "DELETE FROM Notifications";
             String connectionString = ConfigurationManager.ConnectionStrings["Lab2"].ConnectionString;
@@ -318,9 +318,9 @@ namespace Lab2
         //String newDetailsNote = "INSERT INTO DetailsNote (DetailsNoteID, ServiceTicketID, NoteTitle, NoteBody) VALUES ";
 
 
-        protected void addNewAuction(int serviceID, int empID)
+        protected void addNewAuction(int serviceID, int empID, String date)
         {
-            String newAuction = "INSERT INTO Auction (AuctionID, ServiceID, empID) VALUES (@AuctionID, @ServiceID, @empID)";
+            String newAuction = "INSERT INTO Auction (AuctionID, ServiceID, empID, DateOfSale) VALUES (@AuctionID, @ServiceID, @empID, @Date)";
 
             String connectionString = ConfigurationManager.ConnectionStrings["Lab2"].ConnectionString;
 
@@ -330,6 +330,7 @@ namespace Lab2
             sqlCommand.Parameters.AddWithValue("@AuctionID", auctionID);
             sqlCommand.Parameters.AddWithValue("@ServiceID", serviceID);
             sqlCommand.Parameters.AddWithValue("@empID", empID);
+            sqlCommand.Parameters.AddWithValue("@Date", date);
             sqlConnect.Open();
             sqlCommand.ExecuteNonQuery();
             sqlConnect.Close();
@@ -486,7 +487,7 @@ namespace Lab2
 
         protected int getEmployeeID()
         {
-            String employee = ddlWorkflowEmp.SelectedValue.Substring(3);
+            String employee = ddlWorkflowEmp.SelectedValue;
 
             String sqlQuery = "SELECT empID, concat(lastname, ', ', firstname) as Employee from Employee WHERE concat(lastname, ', ', firstname) = " + "'" + employee + "'";
             String connectionString = ConfigurationManager.ConnectionStrings["Lab2"].ConnectionString;
@@ -527,6 +528,22 @@ namespace Lab2
             sqlConnect.Close();
 
             return detailsNoteID;
+        }
+
+        protected int getSpecificServiceTicket(String query)
+        {
+            String ticketQuery = "SELECT ServiceTicketID from Service_Ticket INNER JOIN Customer ON Customer.CustomerID = Service_Ticket.CustomerID WHERE concat(TicketOpenDate, ', ', Customer.LastName, ', ', Customer.FirstName) = @input";
+            String connectionString = ConfigurationManager.ConnectionStrings["Lab2"].ConnectionString;
+            SqlConnection sqlConnect = new SqlConnection(connectionString);
+            sqlConnect.Open();
+            SqlCommand sqlCommand = new SqlCommand(ticketQuery, sqlConnect);
+            sqlCommand.Parameters.AddWithValue("@input", query);
+            SqlDataReader reader = sqlCommand.ExecuteReader();
+            reader.Read();
+            int ticketID;
+            ticketID = (int)reader["ServiceTicketID"];
+
+            return ticketID;
         }
 
         protected int getServiceTicketID()
@@ -601,6 +618,30 @@ namespace Lab2
             sqlConnect.Close();
 
             return auctionID;
+        }
+
+        protected void btn_Populate(object sender, EventArgs e)
+        {
+            ddlWorkflowCustomer.SelectedIndex = 1;
+            ddlWorkflowEmp.SelectedIndex = 1;
+            chbxWorkflowAuction.Checked = true;
+            chbxWorkflowMove.Checked = true;
+            txtboxOriginAddress.Text = "526 Gulburg Ln";
+            txtboxDestinationAddress.Text = "527 Sahara Dr";
+            txtNoteTitle.Text = "Test";
+            txtNoteBody.Text = "Test data";
+        }
+
+        protected void btn_Clear(object sender, EventArgs e)
+        {
+            ddlWorkflowCustomer.ClearSelection();
+            ddlWorkflowEmp.ClearSelection();
+            chbxWorkflowAuction.Checked = false;
+            chbxWorkflowMove.Checked = false;
+            txtboxOriginAddress.Text = "";
+            txtboxDestinationAddress.Text = "";
+            txtNoteTitle.Text = "";
+            txtNoteBody.Text = "";
         }
     }
 }

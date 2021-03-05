@@ -24,7 +24,7 @@ namespace Lab2
         }
         protected void btnSubmitRequest_Click(object sender, EventArgs e)
         {
-            createNotification(TextBoxService.Text, TextBoxServiceDate.Text, TextBoxDescription.Text);
+            createNotification(ddlServiceType.SelectedValue, TextBoxServiceDate.Text, TextBoxDescription.Text);
             lblStatus.Text = "Sent your service request!";
         }
 
@@ -97,6 +97,20 @@ namespace Lab2
             sqlConnect.Close();
 
             return customerName;
+        }
+
+        protected void btn_Populate(Object sender, EventArgs e)
+        {
+            ddlServiceType.SelectedIndex = 0;
+            TextBoxServiceDate.Text = "12/12/2021";
+            TextBoxDescription.Text = "Test Notification";
+        }
+
+        protected void btn_Clear(Object sender, EventArgs e)
+        {
+            ddlServiceType.ClearSelection();
+            TextBoxServiceDate.Text = "";
+            TextBoxDescription.Text = "";
         }
     }
 }

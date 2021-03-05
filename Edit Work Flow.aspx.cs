@@ -32,14 +32,15 @@ namespace Lab2
                 grdTicketHistory.Visible = true;
 
                 String currentTicket = ddlServiceTickets.SelectedValue;
-                String ticketNumber = currentTicket.Substring(0, 1);
+                int ticketNumber = getSpecificServiceTicket(ddlServiceTickets.SelectedValue);
 
                 String sqlQuery = "SELECT ServiceTicketID, TicketStatus, TicketOpenDate, concat(Customer.lastname, ', ', Customer.firstname) as Customer, " +
                                   "ServiceID, Service_Ticket.empID, concat(Employee.lastname, ', ', Employee.firstname) as Employee " +
                                   "FROM Service_Ticket FULL OUTER JOIN Customer ON Service_Ticket.CustomerID = Customer.CustomerID " +
                                   "FULL OUTER JOIN Employee ON Service_Ticket.empID = Employee.empID " +
-                                  "WHERE concat(ServiceTicketID, ', ', Customer.lastname, ', ', Customer.firstname) = '" + currentTicket + "';";
-                SqlConnection sqlConnect = new SqlConnection("Server=Localhost;Database=Lab2;Trusted_Connection=Yes;");
+                                  "WHERE concat(TicketOpenDate, ', ', Customer.lastname, ', ', Customer.firstname) = '" + currentTicket + "';";
+                String connectionString = ConfigurationManager.ConnectionStrings["Lab2"].ConnectionString;
+                SqlConnection sqlConnect = new SqlConnection(connectionString);
 
                 SqlDataAdapter sqlAdapter = new SqlDataAdapter(sqlQuery, sqlConnect);
 
@@ -49,7 +50,7 @@ namespace Lab2
 
 
                 String sqlHistoryQuery = "SELECT TicketChangeDate, concat(Employee.lastname, ', ', Employee.firstname) as 'Attending Employee' from TicketHistory " +
-                                         "INNER JOIN Employee on TicketHistory.empID = Employee.empID WHERE ServiceTicketID = " + "'" + ticketNumber + "'";
+                                         "INNER JOIN Employee on TicketHistory.empID = Employee.empID WHERE ServiceTicketID = " + "'" + ticketNumber.ToString() + "'";
 
                 //Display ticket history of selected service ticket
                 DataTable dtforTicketHistory = new DataTable();
@@ -79,7 +80,7 @@ namespace Lab2
             {
                 lblEmptyTicketError.Text = "";
 
-                String selectedTicket = ddlServiceTickets.SelectedValue.Substring(0, 1);
+                int selectedTicket = getSpecificServiceTicket(ddlServiceTickets.SelectedValue);
                 String serviceTicketID;
                 String ticketStatus;
                 String customer;
@@ -89,8 +90,8 @@ namespace Lab2
                 String originAddress;
 
                 String sqlQuery = "SELECT ServiceTicketID, TicketStatus, TicketOpenDate, Service_Ticket.CustomerID, " +
-                                  "concat(Service_Ticket.CustomerID, ', ', Customer.lastname, ', ', Customer.firstname) as Customer, Service_Ticket.ServiceID, Service_Ticket.empID, " +
-                                  "concat(Service_Ticket.empID, ', ', Employee.lastname, ', ', Employee.firstname) as Employee, " +
+                                  "concat(Customer.lastname, ', ', Customer.firstname) as Customer, Service_Ticket.ServiceID, Service_Ticket.empID, " +
+                                  "concat(Employee.lastname, ', ', Employee.firstname) as Employee, " +
                                   "\"Move\".originAddress, \"Move\".destAddress" +
                                   " FROM Service_Ticket " +
                                   "FULL OUTER JOIN Customer on Service_Ticket.CustomerID = Customer.CustomerID " +
@@ -155,10 +156,10 @@ namespace Lab2
 
                 String serviceTicketID = TicketID.Text;
                 String ticketStatus = txtTicketStatus.Text;
-                String customer = ddlCustomer.SelectedValue.Substring(0, 1);
+                int customer = getCustomerID();
                 String destAddress = txtDestination.Text;
                 String originAddress = txtOrigin.Text; ;
-                String employee = ddlEmployee.SelectedValue.Substring(0, 1);
+                int employee = getEmployeeID();
                 String sqlUpdateString;
                 String sqlAddressUpdateString;
                 String serviceID = ServiceID.Text;
@@ -237,8 +238,8 @@ namespace Lab2
             else
             {
                 lblStatus.Text = "";
-                String serviceTicket = ddlTicket.SelectedValue.Substring(0, 0);
-                String auctionID = ddlAuction.SelectedValue;
+                String serviceTicket = ddlTicket.SelectedValue.Substring(0, 1);
+                int auctionID = getAuctionID(ddlAuction.SelectedValue);
 
                 String sqlQuery = "UPDATE Auction SET ServiceID = @ServiceID WHERE AuctionID = @AuctionID";
                 String connectionString = ConfigurationManager.ConnectionStrings["Lab2"].ConnectionString;
@@ -250,6 +251,72 @@ namespace Lab2
                 sqlCommand.ExecuteNonQuery();
                 sqlConnect.Close();
             }
+        }
+
+        protected int getAuctionID(String date)
+        {
+            int auctionID;
+            String sqlQuery = "SELECT AuctionID from Auction WHERE DateOfSale = @Date";
+            String connectionString = ConfigurationManager.ConnectionStrings["Lab2"].ConnectionString;
+            SqlConnection sqlConnect = new SqlConnection(connectionString);
+            SqlCommand sqlCommand = new SqlCommand(sqlQuery, sqlConnect);
+            sqlCommand.Parameters.AddWithValue("@Date", date);
+            sqlConnect.Open();
+            SqlDataReader reader = sqlCommand.ExecuteReader();
+            reader.Read();
+            auctionID = (int)reader["AuctionID"];
+            sqlConnect.Close();
+            reader.Close();
+            return auctionID;
+        }
+        protected int getSpecificServiceTicket(String query)
+        {
+            String ticketQuery = "SELECT ServiceTicketID from Service_Ticket INNER JOIN Customer ON Customer.CustomerID = Service_Ticket.CustomerID WHERE concat(TicketOpenDate, ', ', Customer.LastName, ', ', Customer.FirstName) = @input";
+            String connectionString = ConfigurationManager.ConnectionStrings["Lab2"].ConnectionString;
+            SqlConnection sqlConnect = new SqlConnection(connectionString);
+            sqlConnect.Open();
+            SqlCommand sqlCommand = new SqlCommand(ticketQuery, sqlConnect);
+            sqlCommand.Parameters.AddWithValue("@input", query);
+            SqlDataReader reader = sqlCommand.ExecuteReader();
+            reader.Read();
+            int ticketID;
+            ticketID = (int)reader["ServiceTicketID"];
+
+            return ticketID;
+        }
+
+        protected int getEmployeeID()
+        {
+            String employee = ddlEmployee.SelectedValue;
+
+            String sqlQuery = "SELECT empID from Employee WHERE concat(lastname, ', ', firstname) = " + "'" + employee + "'";
+            String connectionString = ConfigurationManager.ConnectionStrings["Lab2"].ConnectionString;
+
+            SqlConnection sqlConnect = new SqlConnection(connectionString);
+            sqlConnect.Open();
+            SqlCommand sqlCommand = new SqlCommand(sqlQuery, sqlConnect);
+            SqlDataReader reader = sqlCommand.ExecuteReader();
+            reader.Read();
+            int empID = (int)reader["empID"];
+            reader.Close();
+            sqlConnect.Close();
+
+            return empID;
+        }
+
+        protected int getCustomerID()
+        {
+            String connectionString = ConfigurationManager.ConnectionStrings["Lab2"].ConnectionString;
+            SqlConnection sqlConnect = new SqlConnection(connectionString);
+            String sqlQuery = "SELECT CustomerID from Customer WHERE concat(lastname, ', ', firstname) = " + "'" + ddlCustomer.SelectedValue + "'";
+            SqlCommand sqlCommand = new SqlCommand(sqlQuery, sqlConnect);
+            sqlConnect.Open();
+            SqlDataReader reader = sqlCommand.ExecuteReader();
+            reader.Read();
+            int custID = (int)reader["CustomerID"];
+            sqlConnect.Close();
+            reader.Close();
+            return custID;
         }
 
         //WIP button cancels edit and hides edit textboxes and buttons

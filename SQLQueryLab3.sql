@@ -1,5 +1,5 @@
 
-Use Lab2;
+Use Lab3;
 
 CREATE TABLE Customer
 (
@@ -43,12 +43,16 @@ FOREIGN KEY (empID) REFERENCES Employee (empID)
 );
 CREATE TABLE Auction
 (
+AuctionID int,
 ServiceID int,
 empID int,
+DateOfSale varchar(8000),
 
+PRIMARY KEY (AuctionID),
 FOREIGN KEY (ServiceID) REFERENCES "Service" (ServiceID),
-FOREIGN KEY (empID) REFERENCES Employee (empID)
+FOREIGN KEY (empID) REFERENCES Employee (empID),
 );
+
 CREATE TABLE Item
 (
 itemID int,
@@ -114,6 +118,17 @@ ContactMethod varchar(8000),
 ServiceType varchar(8000),
 MethodType varchar(8000);
 
+CREATE TABLE Notifications
+(
+NotificationID int,
+Customer varchar(80),
+ServiceNeeded varchar(80),
+DateNeeded varchar(80),
+NoteDescription varchar(8000),
+
+PRIMARY KEY (NotificationID),
+);
+
 
 
 
@@ -172,64 +187,7 @@ INSERT INTO "Move" (ServiceID, empID, originAddress, destAddress) VALUES
 INSERT INTO "Move" (ServiceID, empID, originAddress, destAddress) VALUES
 (2, 2, '123 Avenue, Scranton, PA, 18503', '124 Avenue, Scranton, PA, 18503')
 
-INSERT INTO Auction (ServiceID, empID) VALUES
-(3, 3)
+INSERT INTO Auction (AuctionID, ServiceID, empID, DateOfSale) VALUES
+(1, 3, 3, '12/12/2021')
 
 select * from Customer;
-
-USE AUTH;
-
---CREATE TABLE Users
---(
---UserID int,
---UserAddress varchar(8000),
---UserPhone varchar(8000),
---UserName varchar(8000),
---UserEmail varchar(80),
---UserPass varchar(8000),
-
---PRIMARY KEY (UserID),
---);
-CREATE TABLE Person (
-
-UserID int IDENTITY (1,1),
-
-FirstName varchar(20),
-
-LastName varchar(30),
-
-Username varchar (20),
-
-UserEmail varchar(40),
-
-PRIMARY KEY (UserID));
-
- 
-
-CREATE TABLE Pass (
-
-UserID int,
-
-Username varchar(30),
-
-PasswordHash varchar(256),
-
-PRIMARY KEY (UserID),
-FOREIGN KEY (UserID) references Person (UserID)
-);
-
- 
-
- 
-
-INSERT INTO Person (FirstName, LastName, UserName, UserEmail) VALUES ('Jeremy', 'Ezell', 'admin', 'jeremy.ezell@jmu.edu');
-
- 
-
-INSERT INTO Pass (UserID, Username, PasswordHash) VALUES ('1','admin', '1000:N4xiyBysNCw3IIJg6tT0lCISUVDIzyk2:GyY1JTgR6NLal1xqOxa0IUzRxvY=');
-
-select * from Person;
-select * from pass;
-SELECT UserName, PasswordHashFROM PassWHERE UserName= 'admin'AND PasswordHash = 'password';
-
-USE Lab2;
